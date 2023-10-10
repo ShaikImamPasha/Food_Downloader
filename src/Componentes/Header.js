@@ -31,6 +31,7 @@ export const Header=()=>{
         var data=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${placeSearch}`);
         data=await data.json();
         setSearchLocatines(data.data);
+        console.log(data)
      //  console.log(data.data);
     }
 
@@ -43,7 +44,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
 
     return(
      <>
-          <div className="flex h-29  shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
+          <div className="flex md:flex-wrap h-28 w-[900px] sm:w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
            <div>
            {
                isOpen && <div className="bg-white h-[650px] w-[500px]  absolute left-0 top-0 overflow-y-scroll flex items-center  flex-wrap ">
@@ -66,13 +67,14 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
                 </div>
                 
             }
-            <div className="flex items-center justify-center">
-           <img className=" h-[100px]" src={LOGO_URL}/> 
-          <span onClick={()=>dispatch(addLocation(true))} class="material-symbols-outlined cursor-pointer">add_location</span>
+            <div className="flex flex-wrap items-center justify-center">
+           <img className=" h-[80px]" src={LOGO_URL}/>
+          <span onClick={()=>dispatch(addLocation(true))} class="material-symbols-outlined cursor-pointer">add_location</span> <div>
+           <p className="font-semibold ml-2">Other</p>
+           </div>
             </div>
             <div>
                     <ul className="md:flex flex-wrap justify-evenly hidden">
-                        <h2 className="lg:hidden">offers</h2>
                        <li className="px-2 h-auto">Online Statues:{states?"🟢":"🛑"}</li>
                         <li  className="px-2 h-auto"><Link to="/">Home</Link></li>
                         <li  className="px-2 h-auto"><Link to="/about">About Us</Link></li>
@@ -81,7 +83,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
                         <li  className="px-2 h-auto">Login</li>
                     </ul>
             </div>
-            <div className="flex ml-9">
+            <div className="ml-9">
             <h3>{locationName}</h3>
             </div> 
            </div>

@@ -23,7 +23,7 @@ const Slider=(props)=>{
         }
       };
       return (
-        <div className="parent w-[1100px]">
+        <div className="w-[300px] ">
           <Carousel
             responsive={responsive}
             autoPlay={true}
@@ -34,16 +34,16 @@ const Slider=(props)=>{
             partialVisible={false}
             dotListClass="custom-dot-list-style"
           >
-            {props.data===true?whatOnYourMind.map((imageUrl, index) => {
+            {props.data===true?whatOnYourMind && whatOnYourMind.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
-                  <img className="w-[900px] h-[280px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
+                  <img className="w-[180px] h-[180px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
                 </div>
               );
-            }):offersOn.map((imageUrl, index) => {
+            }):offersOn && offersOn.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
-                  <img className="w-[900px] h-[280px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
+                  <img className="w-[180px] h-[180px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
                 </div>
               );
             })}

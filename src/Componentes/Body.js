@@ -36,7 +36,7 @@ const Body=()=>{
            dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
            console.log(whatOnYourMind);
          json_data=json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-         setTemdata(json_data.slice(0,8));
+         json_data && setTemdata(json_data.slice(0,8));
          setOrgenaldata(json_data);
         }
         //console.log("body rendering");
@@ -73,7 +73,7 @@ const Body=()=>{
        </div>
        : 
        <div className="body">
-        <div className="flex justify-center flex-col items-center">
+        <div className="">
             <div>
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={true}/>}
