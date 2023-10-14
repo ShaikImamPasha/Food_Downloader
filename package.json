@@ -1,7 +1,6 @@
 {
   "name": "namastedev-recat-js-web-series",
   "version": "1.0.0",
-  "proxy": "https://food-downloader.onrender.com",
   "description": "teaching by akshy",
   "scripts": {
     "build": "parcel build ./index.html",
