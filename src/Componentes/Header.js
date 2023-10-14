@@ -44,7 +44,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
 
     return(
      <>
-          <div className="flex md:flex-wrap h-28 w-[900px] sm:w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
+          <div className="flex md:flex-wrap h-90  w-90 shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
            <div>
            {
                isOpen && <div className="bg-white h-[650px] w-[500px]  absolute left-0 top-0 overflow-y-scroll flex items-center  flex-wrap ">

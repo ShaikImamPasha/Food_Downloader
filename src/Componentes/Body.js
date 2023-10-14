@@ -74,11 +74,11 @@ const Body=()=>{
        : 
        <div className="body">
         <div className="">
-            <div>
+            <div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={true}/>}
             </div>
-            <div>
+            <div className="flex items-center flex-wrap flex-col">
           <h1 className="font-black mt-6">  What's on your mind?</h1>
             {<Slider data={false}/>}
             </div>
