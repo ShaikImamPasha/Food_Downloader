@@ -5,7 +5,7 @@
   "description": "teaching by akshy",
   "scripts": {
     "build": "parcel build ./index.html",
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "start": "parcel ./index.html",
     "deploy":"gh-pages -d dist",
     "test": "just"
