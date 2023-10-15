@@ -1,11 +1,13 @@
 {
+  "homepages": "https://ShaikImamPasha.github.io/Food_Downloader",
   "name": "namastedev-recat-js-web-series",
   "version": "1.0.0",
-  "proxy":"https://www.swiggy.com/",
   "description": "teaching by akshy",
   "scripts": {
     "build": "parcel build ./index.html",
+    "predeploy": "npm run dist",
     "start": "parcel ./index.html",
+    "deploy":"gh-pages -d dist",
     "test": "just"
   },
   "repository": {
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/ShaikImamPasha/NamasteDev-Recat-Js-Web-Series#readme",
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "parcel": "^2.9.3",
     "postcss": "^8.4.30",
     "process": "^0.11.10",
