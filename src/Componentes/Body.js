@@ -31,18 +31,13 @@ const Body=()=>{
   const fetchdata=async ()=>{
  
  
-    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`, {
-        method: 'GET',
-        mode: 'cors'
-      })
+    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
          let json_data=await data1.json();
 console.log(json_data)
 
          
          
-         
-         
-         
+           
          dispatch(addOffersOn(json_data?.data?.cards[1]?.card?.card?.imageGridCards?.info))
            dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info))
            dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
