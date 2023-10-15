@@ -1,13 +1,10 @@
 {
   "homepages": "https://ShaikImamPasha.github.io/Food_Downloader",
-  "name": "namastedev-recat-js-web-series",
   "version": "1.0.0",
   "description": "teaching by akshy",
   "scripts": {
     "build": "parcel build ./index.html",
-    "predeploy": "npm run build",
     "start": "parcel ./index.html",
-    "deploy":"gh-pages -d dist",
     "test": "just"
   },
   "repository": {
