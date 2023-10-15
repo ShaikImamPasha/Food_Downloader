@@ -7,6 +7,7 @@
     "start": "parcel ./index.html",
     "test": "just"
   },
+  "proxy":"https://foode-downloader.onrender.com/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShaikImamPasha/NamasteDev-Recat-Js-Web-Series.git"

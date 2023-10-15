@@ -32,19 +32,16 @@ const Body=()=>{
  
  
     const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-         let json_data=await data1.json();
-console.log(json_data)
-
-         
+         let json_data=await data1.json();        
          
            
-         dispatch(addOffersOn(json_data?.data?.cards[1]?.card?.card?.imageGridCards?.info))
-           dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info))
-           dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
-           console.log(whatOnYourMind);
-         json_data=json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        //  dispatch(addOffersOn(json_data?.data?.cards[1]?.card?.card?.imageGridCards?.info))
+        //    dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info))
+        //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
+         json_data=json_data.data.cards[3].card.card.gridElements.infoWithStyle.restaurants;
          json_data && setTemdata(json_data.slice(0,8));
-         setOrgenaldata(json_data);
+        console.log(tempdata)
+        setOrgenaldata(json_data);
         }
         //console.log("body rendering");
         function searchdata(){
@@ -81,13 +78,13 @@ console.log(json_data)
        : 
        <div className="body">
         <div className="">
-            <div className="flex items-center flex-wrap flex-col">
+            {/* <div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={true}/>}
-            </div>
+            </div> */}
             <div className="flex items-center flex-wrap flex-col">
           <h1 className="font-black mt-6">  What's on your mind?</h1>
-            {<Slider data={false}/>}
+            {/* {<Slider data={false}/>} */}
             </div>
         </div>
         <div>
