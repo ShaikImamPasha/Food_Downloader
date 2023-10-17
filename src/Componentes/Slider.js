@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Slider=(props)=>{
     const whatOnYourMind=useSelector((state)=>state.loc.whatOnYourMind)
     const offersOn=useSelector((state)=>state.loc.offersOn)
+    // console.log(offersOn)
     const responsive = {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
@@ -34,13 +35,13 @@ const Slider=(props)=>{
             partialVisible={false}
             dotListClass="custom-dot-list-style"
           >
-            {props.data===true?whatOnYourMind && whatOnYourMind.map((imageUrl, index) => {
+            {props.data===true?offersOn.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
                   <img className="w-[180px] h-[180px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
                 </div>
               );
-            }):offersOn && offersOn.map((imageUrl, index) => {
+            }):whatOnYourMind.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
                   <img className="w-[180px] h-[180px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />

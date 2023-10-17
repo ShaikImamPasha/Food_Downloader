@@ -29,18 +29,15 @@ const Body=()=>{
 },[lat,lng]); //it's worked after all componentes are renderd.
 
   const fetchdata=async ()=>{
- 
- 
     const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
          let json_data=await data1.json();        
-         
-           
-        //  dispatch(addOffersOn(json_data?.data?.cards[1]?.card?.card?.imageGridCards?.info))
-        //    dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info))
+         console.log(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info)
+         dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
+         dispatch(addWhatOnYourMind(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
-         json_data=json_data.data.cards[3].card.card.gridElements.infoWithStyle.restaurants;
+         json_data=json_data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
          json_data && setTemdata(json_data.slice(0,8));
-        console.log(tempdata)
+        
         setOrgenaldata(json_data);
         }
         //console.log("body rendering");
@@ -51,7 +48,6 @@ const Body=()=>{
         const loadNextData=()=>{
             if(orgenaldata.length<=tempdata.length){
                    setHashMore(false);
-                   console.log("cksdfc");
                    return
             }
             setTimeout(()=>{
@@ -78,13 +74,13 @@ const Body=()=>{
        : 
        <div className="body">
         <div className="">
-            {/* <div className="flex items-center flex-wrap flex-col">
+            {offersOn.length!==0 || offersOn!==undefined?<div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={true}/>}
-            </div> */}
+            </div>:null}
             <div className="flex items-center flex-wrap flex-col">
-          <h1 className="font-black mt-6">  What's on your mind?</h1>
-            {/* {<Slider data={false}/>} */}
+         {whatOnYourMind===undefined?null:whatOnYourMind.length!==0?<div><h1 className="font-black mt-6">  What's on your mind?</h1>
+         <Slider data={false}/></div>:null}
             </div>
         </div>
         <div>
