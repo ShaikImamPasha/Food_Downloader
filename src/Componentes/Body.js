@@ -29,8 +29,12 @@ const Body=()=>{
 },[lat,lng]); //it's worked after all componentes are renderd.
 
   const fetchdata=async ()=>{
-    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-         let json_data=await data1.json();        
+
+    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
+         let json_data=await data1.json();    
+         console.log(json_data)
+         
+
          console.log(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info)
          dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
          dispatch(addWhatOnYourMind(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info))
