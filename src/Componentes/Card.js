@@ -7,15 +7,13 @@ const Card=(props)=>{     //props is js object
 
      return(
         <Link to={"/restaurent/"+id}>
-        <div className="flex  justify-around flex-col mb-10  w-[100px] ml-10  bg-white-100 hover:bg-gray-200 rounded-3xl">
+        <div className="flex  justify-around flex-col mb-[2px]  w-[115px] h-[400px] ml-10  bg-white-100 hover:bg-gray-200 rounded-3xl">
            <div className="flex items-center justify-center">
-           <img loading="lazy" className="w-50 h-48 mb-3 rounded-3xl" alt="loading" src={CDN_IMAGE_URL+cloudinaryImageId}/>
+           <img loading="lazy" className="w-[110px] h-48  rounded-3xl" alt="loading" src={CDN_IMAGE_URL+cloudinaryImageId}/>
            </div>
          
              <div>
-             <h3 className="font-bold">{name}</h3>
-             <p>{cuisines.join(", ")}</p>
-             <span>{costForTwo}<br></br>{avgRating} Rating</span>
+             <span>{avgRating} Rating</span>
              <p>{areaName},{locality}</p>
              </div>
          </div>
