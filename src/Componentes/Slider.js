@@ -24,7 +24,7 @@ const Slider=(props)=>{
         }
       };
       return (
-        <div className="w-[300px]">
+        <div className="w-[400px]">
           <Carousel
             responsive={responsive}
             autoPlay={true}
@@ -38,7 +38,7 @@ const Slider=(props)=>{
             {props.data===true?offersOn.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
-                  <img className="w-[70px] h-[80px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
+                  <img className="w-[280px] h-[200px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
                 </div>
               );
             }):whatOnYourMind.map((imageUrl, index) => {

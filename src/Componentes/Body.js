@@ -74,15 +74,14 @@ const Body=()=>{
        : 
        <div className="body">
         <div className="">
-            <Slider data={true}></Slider>
-            {/* { offersOn===undefined?null:offersOn.length!==0?<div className="flex items-center flex-wrap flex-col">
+            { offersOn===undefined?null:offersOn.length!==0?<div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={true}/>}
-            </div>:null} */}
-            {/* <div className="flex items-center flex-wrap flex-col">
+            </div>:null}
+            <div className="flex items-center flex-wrap flex-col">
          {whatOnYourMind===undefined?null:whatOnYourMind.length!==0?<div><h1 className="font-black mt-6">  What's on your mind?</h1>
          <Slider data={false}/></div>:null}
-            </div> */}
+            </div>
         </div>
         <div>
                 
