@@ -11,6 +11,7 @@ import CardState from "./Utils/CardState";
 import { Provider } from "react-redux";
 import appStore from "./Utils/Redux/appStore";
 import FavourateCard from "./Componentes/FavourateCard";
+import BottemNavBar from "./Componentes/BottemNavBar";
 /**
  * Low level planing
  * NavBar
@@ -39,6 +40,7 @@ const AppLayout=()=>{
               <UserContext.Provider value={{loggedIn: "pasha"}}>
                  <div className="app">
                    <objtype.Header/>
+                   <BottemNavBar></BottemNavBar>
                   <Outlet />
                  </div>
               </UserContext.Provider>
