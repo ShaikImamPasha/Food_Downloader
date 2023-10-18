@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWhatOnYourMind,addOffersOn } from "../Utils/Redux/locationes.js";
 import { Ti } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
-const Body=()=>{
+const Body=(props)=>{
      //state vairable  -super powerful vairable
      const resdata=useState([]);
      const [tempdata,setTemdata]=resdata; 
@@ -81,7 +81,7 @@ const Body=()=>{
                          <Shimmer/>     
        </div>
        : 
-       <div className="body">
+       <div className="mb-11">
         <div className="">
             { offersOn===undefined?null:offersOn.length!==0?<div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
