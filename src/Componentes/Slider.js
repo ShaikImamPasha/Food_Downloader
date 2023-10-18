@@ -38,7 +38,7 @@ const Slider=(props)=>{
             {props.data===true?offersOn.map((imageUrl, index) => {
               return (
                 <div className="flex ml-2" key={index}>
-                  <img className="w-[320px] h-[200px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
+                  <img className="w-[350px] h-[200px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.imageId} alt="movie" />
                 </div>
               );
             }):whatOnYourMind.map((imageUrl, index) => {

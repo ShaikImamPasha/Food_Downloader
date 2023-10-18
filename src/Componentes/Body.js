@@ -23,15 +23,20 @@ const Body=()=>{
     const whatOnYourMind=useSelector((state)=>state.loc.whatOnYourMind);
     const offersOn=useSelector((state)=>state.loc.offersOn);
     const dispatch=useDispatch();
-   
+   console.log(window.screen.height);
   useEffect(()=>{
     fetchdata()
 },[lat,lng]); //it's worked after all componentes are renderd.
 
   const fetchdata=async ()=>{
-
-    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
-         let json_data=await data1.json();    
+    if(938===window.screen.height){
+        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
+        var json_data=await data1.json(); 
+    }
+    else{
+        const data1 = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`)
+        var json_data=await data1.json(); 
+    }
          console.log(json_data)
          
 
