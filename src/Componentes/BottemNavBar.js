@@ -1,7 +1,7 @@
 const BottemNavBar=()=>{
     return(
         <>
-        <div className="flex justify-around fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
+        <div className="flex justify-around fixed bottom-0 left-0 z-50 w-full h-10 bg-white border-t border-gray-200">
             <div>
             <span class="material-symbols-outlined">
 home
