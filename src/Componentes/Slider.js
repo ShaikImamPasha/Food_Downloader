@@ -24,7 +24,7 @@ const Slider=(props)=>{
         }
       };
       return (
-        <div className="w-[350px] h-[200px]">
+        <div className="w-[350px] h-[200px] ">
           <Carousel
             responsive={responsive}
             autoPlay={true}
