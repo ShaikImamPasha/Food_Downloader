@@ -47,12 +47,12 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
           <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
            <div>
            {
-               isOpen && <div className="bg-white h-[800px] w-full absolute left-0 top-0 overflow-y-scroll flex-wrap">
+               isOpen && <div className="bg-white h-[500px] w-full absolute left-0 top-0 overflow-y-scroll flex-wrap">
                    <div className="w-full">
                    <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[295px] w-full">
                       close
                    </span>
-                   <input className="w-full h-[50px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
+                   <input className="w-full h-[40px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
                     </div>
         
             <div  className="h-[50px] w-full border border-solid cursor-pointer flex flex-wrap mt-10 justify-center items-center">
