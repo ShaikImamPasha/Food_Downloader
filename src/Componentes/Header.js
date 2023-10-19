@@ -44,24 +44,24 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
 
     return(
      <>
-          <div className="flex md:flex-wrap h-90  w-90 shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
+          <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
            <div>
            {
-               isOpen && <div className="bg-white h-[800px] w-full absolute left-0 top-0 overflow-y-scroll flex items-center  flex-wrap ">
-                   <div>
-                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer ml-72 ">
+               isOpen && <div className="bg-white h-[1000px] w-full absolute left-0 top-0 overflow-y-scroll flex-wrap">
+                   <div className="w-full">
+                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[295px] w-full">
                       close
                    </span>
-                   <input className="w-[350px] h-[50px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} type="text"></input>
+                   <input className="w-full h-[50px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} type="text"></input>
                     </div>
         
-            <div  className="h-[500px] w-full border border-solid cursor-pointer flex items-center justify-center">
+            <div  className="h-[50px] w-full border border-solid cursor-pointer flex flex-wrap mt-7">
                   <span class="material-symbols-outlined">my_location</span>
                     <div >
                     <span  className="font-medium">Get Curront loction Using Gps</span>
                     </div>
             </div>
-                    <div className="">
+                    <div className="bg-black">
                           {searchlocatines?<SearchLocationes className="" data={searchlocatines}/>:null}
                     </div>
                 </div>

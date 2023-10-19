@@ -17,7 +17,7 @@ const SearchLocationes=(props)=>{
     return(
         <> 
        {
-       data.length===0?<div   className="cursor-pointer w-full h-full"><h3>no data</h3></div>:data.map((data)=>{
+       data.length===0?<div   className="cursor-pointer w-full h-full bg-black"><h3>no data</h3></div>:data.map((data)=>{
             return(
                 <div  onClick={()=>{setLocation(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-full border border-solid  mt-7 cursor-pointer flex items-center justify-center">
                 <div onClick={()=>{setLocation(data.place_id)}} className="pr-8">
