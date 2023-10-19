@@ -8,12 +8,12 @@ import { useState, CSSProperties } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addWhatOnYourMind,addOffersOn } from "../Utils/Redux/locationes.js";
 import { Ti } from "../Utils/Redux/cardSlice.js";
+import { addResturentData } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
 const Body=(props)=>{
      //state vairable  -super powerful vairable
      const resdata=useState([]);
      const [tempdata,setTemdata]=resdata; 
-     const [searchtest,setSearchtest]=useState("");
     const  [orgenaldata,setOrgenaldata]=useState([]);
     const [hasmore,setHashMore]=useState(true);
     const [curentIndex,setCurentIndex]=useState(4);
@@ -48,12 +48,9 @@ const Body=(props)=>{
          json_data && setTemdata(json_data.slice(0,8));
         
         setOrgenaldata(json_data);
+        dispatch(addResturentData(json_data))
         }
         //console.log("body rendering");
-        function searchdata(){
-            var filterdata=orgenaldata.filter((e)=> e.info.name.toLowerCase().includes(searchtest.toLowerCase()));
-            setTemdata(filterdata);
-        }
         const loadNextData=()=>{
             if(orgenaldata.length<=tempdata.length){
                    setHashMore(false);
@@ -98,10 +95,6 @@ const Body=(props)=>{
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}
        endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>}>
         <div>
-        <div className="p-5 flex justify-center flex-wrap">
-              <input className="border-r-0 w-[280px] border border-solid border-black" placeholder="search your favourite item" type="text" value={searchtest} onChange={(e)=>setSearchtest(e.target.value)}></input>
-              <span className="material-symbols-outlined w-7 bg-orange-400" onClick={searchdata}>search</span>
-        </div>
        <div className="flex flex-wrap items-center justify-center">
                 {tempdata.map((information)=>{
                  return(

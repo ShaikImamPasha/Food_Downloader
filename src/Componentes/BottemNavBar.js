@@ -1,17 +1,23 @@
+import { Link } from "react-router-dom";
+
 const BottemNavBar=()=>{
     return(
         <>
         <div className="flex justify-around fixed bottom-0 left-0 z-50 w-full h-12 bg-white border-t border-gray-200">
-            <div>
+           <Link to="/">
+           <div>
     <span class="material-symbols-outlined mt-3 cursor-pointer">
 home
 </span>
             </div>
-            <div>
+           </Link>
+            <Link to="/search/">
+            <div >
             <span class="material-symbols-outlined mt-3 cursor-pointer">
 search
 </span>
             </div>
+            </Link>
             <div>
             <span class="material-symbols-outlined mt-3 cursor-pointer">
 shopping_cart

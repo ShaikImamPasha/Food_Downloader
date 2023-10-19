@@ -3,7 +3,8 @@ const cardSlice=createSlice({
     name:"card",
     initialState:{
         itemes: [],
-        topOrginalItem:[]
+        topOrginalItem:[],
+        resturentData:[]
     },
     reducers:{
         addItem: function(state,action){
@@ -16,8 +17,11 @@ const cardSlice=createSlice({
         TiModifyF: function(state,action){
             const d=action.payload;
             return {...state,topOrginalItem: d.length}
+        },
+        addResturentData:function(state,action){
+            return {...state,resturentData:action.payload}
         }
     }
 })
-export const {addItem,Ti,TiModifyF}=cardSlice.actions;
+export const {addItem,Ti,TiModifyF, addResturentData}=cardSlice.actions;
 export default cardSlice.reducer;

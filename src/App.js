@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import appStore from "./Utils/Redux/appStore";
 import FavourateCard from "./Componentes/FavourateCard";
 import BottemNavBar from "./Componentes/BottemNavBar";
+import SearchFood from "./Componentes/SearchFood";
 /**
  * Low level planing
  * NavBar
@@ -58,6 +59,10 @@ const Approter=createBrowserRouter([
         path: "/",
         element: <Body />
     },
+    {
+      path: "/search",
+      element: <SearchFood />
+  },
       {
         path: "/about",  
         element: <About />,

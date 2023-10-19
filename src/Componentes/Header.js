@@ -49,7 +49,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
            {
                isOpen && <div className="bg-white h-[650px] fixed  left-0 top-0 flex-wrap">
                    <div className="w-full">
-                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[295px] w-full">
+                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[300px] w-full">
                       close
                    </span>
                    <input className="w-full h-[40px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
@@ -61,7 +61,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
                     <span  className="font-medium">Get Curront loction Using Gps</span>
                     </div>
             </div>
-                    <div className="bg-white  h-[400px] w-[350px] overflow-auto ">
+                    <div className="bg-white  h-[400px] w-[400px] overflow-auto ">
                           {searchlocatines?<SearchLocationes className="" data={searchlocatines}/>:null}
                     </div>
                 </div>
