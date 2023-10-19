@@ -19,15 +19,15 @@ const SearchLocationes=(props)=>{
        {
        data.length===0?<div   className="cursor-pointer w-full h-full bg-black"><h3>no data</h3></div>:data.map((data)=>{
             return(
-                <div  onClick={()=>{setLocation(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-full border border-solid  mt-7 cursor-pointer flex items-center justify-center">
-                <div onClick={()=>{setLocation(data.place_id)}} className="pr-8">
+                <div  onClick={()=>{setLocation(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-full border border-solid  mt-7 cursor-pointer flex items-center justify-start">
+                <div onClick={()=>{setLocation(data.place_id)}} className="pr-7">
                 <span class="material-symbols-outlined">
                   location_on
                 </span>
                 </div>
-                <div>
+                <div className="break-words">
                     {data.structured_formatting.main_text}
-                    <div className="text-slate-400">
+                    <div className="text-slate-400 break-words">
                     {data.structured_formatting.secondary_text}
                 </div>
                 <div className="border border-solid border-dotted">
