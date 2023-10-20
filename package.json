@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ShaikImamPasha/NamasteDev-Recat-Js-Web-Series#readme",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "gh-pages": "^6.0.0",
     "parcel": "^2.9.3",
     "postcss": "^8.4.30",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
+    "axios": "^1.5.1",
     "pure-react-carousel": "^1.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

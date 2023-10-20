@@ -11,7 +11,7 @@ import { Ti } from "../Utils/Redux/cardSlice.js";
 import { addResturentData } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
 import MapComponent from "./MapComponent.js";
-
+import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -40,7 +40,8 @@ const Body=(props)=>{
     const dispatch=useDispatch();
   useEffect(()=>{
     fetchdata()
-},[lat,lng]); //it's worked after all componentes are renderd.
+},[lat,lng,mapdata]); //it's worked after all componentes are renderd.
+
 var arrr=[];
   const fetchdata=async ()=>{
     if(800<=window.screen.height){
@@ -59,22 +60,42 @@ var arrr=[];
          json_data=json_data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
          json_data && setTemdata(json_data.slice(0,8));
        
-         json_data?.map(async (data)=>{
-            var places=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${data.info.areaName}`)
-            places=await places.json()
-            var d=await fetch(` https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${places.data[0].place_id}`)
-            d=await d.json();
-           await arrr.push({location:d?.data[0]?.geometry?.location,resturentName:data?.info?.name})
-              await setMapData(arrr)
+
+
+
+        const allplacesurls=json_data?.map((data)=>{
+            return `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${data.info.areaName}`  
         })
-      
+        const promises = allplacesurls.map(url => axios.get(url));
+        const responses = await Promise.all(promises);
+
+        const responseData = responses.map(response => response.data);
+
+
+
+
+        const allplacePlaceIdsurls=responseData?.map((data)=>{
+          return `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${data.data[0].place_id}` 
+      })
+      const promisess = allplacePlaceIdsurls.map(url => axios.get(url));
+      const responsess = await Promise.all(promisess);
+
+      const responseDataa = responsess.map(response => response.data);
+
+    
+    setMapData(responseDataa);
+        
+
+
+
+
         setOrgenaldata(json_data);
         dispatch(addResturentData(json_data))
         }
     
       
      
-        console.log(mapdata.length>=3);
+       
         const loadNextData=()=>{
             if(orgenaldata.length<=tempdata.length){
                    setHashMore(false);
@@ -115,9 +136,20 @@ var arrr=[];
         </div>
         <div>
           {  
-    <MapComponent data={mapdata}></MapComponent>
+       
+          <MapContainer center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {
+              
+            mapdata.map((location, index) => (
+              <Marker key={index} position={[location.data[0].geometry.location.lat,location.data[0].geometry.location.lng]} icon={customIcon}>
+                <Popup>{`hyderbad`} <div className='cursor-pointer' onClick={()=>console.log("cl")}>clk here for got to resturent details</div></Popup>
+              </Marker>
+            ))
+            }
+          </MapContainer>
           }
-      
+              
 
             </div>
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}
