@@ -64,7 +64,7 @@ var arrr=[];
 
 
         const allplacesurls=json_data?.map((data)=>{
-            return `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${data.info.areaName}`  
+            return `https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`  
         })
         const promises = allplacesurls.map(url => axios.get(url));
         const responses = await Promise.all(promises);
@@ -75,7 +75,7 @@ var arrr=[];
 
 
         const allplacePlaceIdsurls=responseData?.map((data)=>{
-          return `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${data.data[0].place_id}` 
+          return `https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}` 
       })
       const promisess = allplacePlaceIdsurls.map(url => axios.get(url));
       const responsess = await Promise.all(promisess);
