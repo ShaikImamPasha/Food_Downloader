@@ -40,7 +40,7 @@ const Body=(props)=>{
     const dispatch=useDispatch();
   useEffect(()=>{
     fetchdata()
-},[lat,lng,mapdata]); //it's worked after all componentes are renderd.
+},[lat,lng]); //it's worked after all componentes are renderd.
 
 var arrr=[];
   const fetchdata=async ()=>{
