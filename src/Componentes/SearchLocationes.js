@@ -10,6 +10,7 @@ const SearchLocationes=(props)=>{
        const url=`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${data}`
          var data1=await fetch(url);
         data1=await data1.json();
+        // console.log(data1)
       //  console.log(data1.data[0].geometry.location.lng);
         dispatch(addLat(data1.data[0].geometry.location.lat))
         dispatch(addLng(data1.data[0].geometry.location.lng))

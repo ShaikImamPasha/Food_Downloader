@@ -6,13 +6,26 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ClipLoader   from "react-spinners/ClipLoader";
 import { useState, CSSProperties } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWhatOnYourMind,addOffersOn } from "../Utils/Redux/locationes.js";
+import locationes, { addWhatOnYourMind,addOffersOn,addMapResturenData } from "../Utils/Redux/locationes.js";
 import { Ti } from "../Utils/Redux/cardSlice.js";
 import { addResturentData } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
+import MapComponent from "./MapComponent.js";
+
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+const customIcon = L.icon({
+  iconUrl: 'https://cdn-icons-png.flaticon.com/512/3448/3448609.png',
+  iconSize: [40, 40],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
 const Body=(props)=>{
      //state vairable  -super powerful vairable
      const resdata=useState([]);
+     const [mapdata,setMapData]=useState([]);
      const [tempdata,setTemdata]=resdata; 
     const  [orgenaldata,setOrgenaldata]=useState([]);
     const [hasmore,setHashMore]=useState(true);
@@ -22,12 +35,13 @@ const Body=(props)=>{
     const lng=useSelector((states)=>states.loc.lng);
     const whatOnYourMind=useSelector((state)=>state.loc.whatOnYourMind);
     const offersOn=useSelector((state)=>state.loc.offersOn);
+    const mapData=useSelector((state)=>state.loc.mapData);
+  //  console.log(mapData)
     const dispatch=useDispatch();
-   console.log(window.screen.height);
   useEffect(()=>{
     fetchdata()
 },[lat,lng]); //it's worked after all componentes are renderd.
-
+var arrr=[];
   const fetchdata=async ()=>{
     if(800<=window.screen.height){
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
@@ -37,20 +51,30 @@ const Body=(props)=>{
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`)
         var json_data=await data1.json(); 
     }
-         console.log(json_data)
-         
+        
 
-         console.log(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info)
          dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
-         dispatch(addWhatOnYourMind(json_data.data.cards[1].card.card.gridElements?.infoWithStyle.info))
+         dispatch(addWhatOnYourMind(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
          json_data=json_data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
          json_data && setTemdata(json_data.slice(0,8));
-        
+       
+         json_data?.map(async (data)=>{
+            var places=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${data.info.areaName}`)
+            places=await places.json()
+            var d=await fetch(` https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${places.data[0].place_id}`)
+            d=await d.json();
+           await arrr.push({location:d?.data[0]?.geometry?.location,resturentName:data?.info?.name})
+              await setMapData(arrr)
+        })
+      
         setOrgenaldata(json_data);
         dispatch(addResturentData(json_data))
         }
-        //console.log("body rendering");
+    
+      
+     
+        console.log(mapdata.length>=3);
         const loadNextData=()=>{
             if(orgenaldata.length<=tempdata.length){
                    setHashMore(false);
@@ -90,7 +114,11 @@ const Body=(props)=>{
             </div>
         </div>
         <div>
-                
+          {  
+    <MapComponent data={mapdata}></MapComponent>
+          }
+      
+
             </div>
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}
        endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>}>

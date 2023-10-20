@@ -7,13 +7,13 @@ const Restaurent=()=>{
     const {resid}=useParams();
     const resInfo=useResturent(resid);
     const [arrowIndex,setArrayIndex]=useState(null);
-
+ console.log(resInfo)
     function setArrayfunction(index){
     setArrayIndex(index);
     }
     if(resInfo!==null){
         var {name,avgRating,areaName,locality}=resInfo?.data?.cards[0]?.card?.card?.info;
-        var menuitemes=resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards;
+        var menuitemes=resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR.cards;
         //console.log(menuitemes);
     }
 

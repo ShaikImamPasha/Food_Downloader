@@ -31,8 +31,7 @@ export const Header=()=>{
         var data=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${placeSearch}`);
         data=await data.json();
         setSearchLocatines(data.data);
-        console.log(data)
-     //  console.log(data.data);
+
     }
 
   

@@ -8,7 +8,6 @@ const SearchFood=()=>{
     const [searchtest,setSearchtest]=useState("");
     const [tempdata,setTemdata]=useState([]); 
     const orginalData=useSelector((state)=>state.cart.resturentData)
-    console.log(orginalData)
     function searchdata(){
         var filterdata=orginalData.filter((e)=> e.info.name.toLowerCase().includes(searchtest.toLowerCase()));
         setTemdata(filterdata);
