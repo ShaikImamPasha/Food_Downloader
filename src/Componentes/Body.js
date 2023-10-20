@@ -137,17 +137,17 @@ var arrr=[];
         <div>
           {  
        
-          <MapContainer center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }}>
+       mapdata.length!==0? <MapContainer center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {
               
-            mapdata.map((location, index) => (
+         mapdata.map((location, index) => (
               <Marker key={index} position={[location.data[0].geometry.location.lat,location.data[0].geometry.location.lng]} icon={customIcon}>
                 <Popup>{`hyderbad`} <div className='cursor-pointer' onClick={()=>console.log("cl")}>clk here for got to resturent details</div></Popup>
               </Marker>
             ))
             }
-          </MapContainer>
+          </MapContainer>:null
           }
               
 
