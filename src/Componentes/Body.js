@@ -15,6 +15,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import axios from "axios";
+import { Link } from "react-router-dom";
 const customIcon = L.icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3448/3448609.png',
   iconSize: [40, 40],
@@ -64,43 +65,45 @@ var arrr=[];
 
 
         const allplacesurls=json_data?.map((data)=>{
-            return fetch(`https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
+            return fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
         })
+      //  console.log(json_data)
         Promise.all(allplacesurls)
   .then(responses => {
-    // Convert each response to JSON
     const jsonPromises = responses.map(response => response.json());
-    return Promise.all(jsonPromises); // Resolves when all JSON parsing is done
+    return Promise.all(jsonPromises);
   })
   .then(dataArray => {
-    // Work with the array of data here
+   // console.log(dataArray)
     const allplacePlaceIdsurls=dataArray?.map((data)=>{
-      return fetch(`https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`) 
+      return fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`) 
   })
 
   Promise.all(allplacePlaceIdsurls)
   .then(responses => {
-    // Convert each response to JSON
+
     const jsonPromises = responses.map(response => response.json());
-    return Promise.all(jsonPromises); // Resolves when all JSON parsing is done
+    return Promise.all(jsonPromises); 
   })
   .then(dataArray => {
-    // Work with the array of data here
-    setMapData(dataArray);
-    console.log(dataArray);
+   json_data.map((data,index)=>{
+       dataArray[index].data[0].id=data.info.id;
+       dataArray[index].data[0].resturentName=data.info.name;
+       setMapData(dataArray);
+   })
+    
+   
   })
   .catch(error => {
-    // Handle any errors that occurred during the fetch operations
     console.error('Fetch operation error:', error);
   });
 
   })
   .catch(error => {
-    // Handle any errors that occurred during the fetch operations
     console.error('Fetch operation error:', error);
   });
 
-
+  
         setOrgenaldata(json_data);
         dispatch(addResturentData(json_data))
         }
@@ -146,16 +149,17 @@ var arrr=[];
          <Slider data={false}/></div>:null}
             </div>
         </div>
-        <div className="w-80 h-52 flex justify-center items-center">
+        <div className="">
           {  
        
-       mapdata.length!==0? <MapContainer center={[0, 0]} zoom={2} style={{ height: '200px', width: '100px' }}>
+       mapdata.length!==0? <MapContainer center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {
               
          mapdata.map((location, index) => (
+          
               <Marker key={index} position={[location.data[0].geometry.location.lat,location.data[0].geometry.location.lng]} icon={customIcon}>
-                <Popup>{`hyderbad`} <div className='cursor-pointer' onClick={()=>console.log("cl")}>clk here for got to resturent details</div></Popup>
+               {console.log(mapdata)} <Popup><div className='cursor-pointer' ><Link to={"/restaurent/"+location.data[0].id}>click here for go to {location.data[0].resturentName} resturent Menu</Link></div></Popup>
               </Marker>
             ))
             }
