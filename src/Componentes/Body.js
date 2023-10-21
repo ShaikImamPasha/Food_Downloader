@@ -11,10 +11,10 @@ import { Ti } from "../Utils/Redux/cardSlice.js";
 import { addResturentData } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
 import MapComponent from "./MapComponent.js";
-import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import axios from "axios";
 const customIcon = L.icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3448/3448609.png',
   iconSize: [40, 40],
@@ -79,12 +79,25 @@ var arrr=[];
       })
       const promisess = allplacePlaceIdsurls.map(url => axios.get(url));
       const responsess = await Promise.all(promisess);
+  console.log(responsess)
 
-      const responseDataa = responsess.map(response => response.data);
+  const responseDataa = responsess.map(response => response.data);
 
     
-    setMapData(responseDataa);
-        
+  setMapData(responseDataa);
+    
+
+      // const promises = allplacesurls.map(async url =>await fetch(url));
+
+  //   Promise.all(promises) 
+  // .then(responses => Promise.all(responses.map(res => res.json())))
+  // .then(dataArray => {
+  //   // Work with the array of data here
+  //   console.log(dataArray);
+
+    
+  // }
+  // )
 
 
 
