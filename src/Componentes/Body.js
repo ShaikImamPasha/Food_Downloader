@@ -64,40 +64,55 @@ var arrr=[];
 
 
         const allplacesurls=json_data?.map((data)=>{
-            return `https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`  
+            return fetch(`https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
         })
-        const promises = allplacesurls.map(url => axios.get(url));
-        const responses = await Promise.all(promises);
+        Promise.all(allplacesurls)
+  .then(responses => {
+    // Convert each response to JSON
+    const jsonPromises = responses.map(response => response.json());
+    return Promise.all(jsonPromises); // Resolves when all JSON parsing is done
+  })
+  .then(dataArray => {
+    // Work with the array of data here
+    const allplacePlaceIdsurls=dataArray?.map((data)=>{
+      return fetch(`https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`) 
+  })
 
-        const responseData = responses.map(response => response.data);
+  Promise.all(allplacePlaceIdsurls)
+  .then(responses => {
+    // Convert each response to JSON
+    const jsonPromises = responses.map(response => response.json());
+    return Promise.all(jsonPromises); // Resolves when all JSON parsing is done
+  })
+  .then(dataArray => {
+    // Work with the array of data here
+    setMapData(dataArray);
+    console.log(dataArray);
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the fetch operations
+    console.error('Fetch operation error:', error);
+  });
+
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the fetch operations
+    console.error('Fetch operation error:', error);
+  });
 
 
 
 
-        const allplacePlaceIdsurls=responseData?.map((data)=>{
-          return `https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}` 
-      })
-      const promisess = allplacePlaceIdsurls.map(url => axios.get(url));
-      const responsess = await Promise.all(promisess);
-  console.log(responsess)
 
-  const responseDataa = responsess.map(response => response.data);
+
+        
 
     
-  setMapData(responseDataa);
+  
+  
     
 
-      // const promises = allplacesurls.map(async url =>await fetch(url));
-
-  //   Promise.all(promises) 
-  // .then(responses => Promise.all(responses.map(res => res.json())))
-  // .then(dataArray => {
-  //   // Work with the array of data here
-  //   console.log(dataArray);
-
-    
-  // }
-  // )
+  
 
 
 
