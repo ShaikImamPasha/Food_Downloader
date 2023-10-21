@@ -101,22 +101,6 @@ var arrr=[];
   });
 
 
-
-
-
-
-        
-
-    
-  
-  
-    
-
-  
-
-
-
-
         setOrgenaldata(json_data);
         dispatch(addResturentData(json_data))
         }
@@ -162,10 +146,10 @@ var arrr=[];
          <Slider data={false}/></div>:null}
             </div>
         </div>
-        <div>
+        <div className="w-80 h-52 flex justify-center items-center">
           {  
        
-       mapdata.length!==0? <MapContainer center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }}>
+       mapdata.length!==0? <MapContainer center={[0, 0]} zoom={2} style={{ height: '200px', width: '100px' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {
               
