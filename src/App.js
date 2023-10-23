@@ -13,6 +13,7 @@ import appStore from "./Utils/Redux/appStore";
 import FavourateCard from "./Componentes/FavourateCard";
 import BottemNavBar from "./Componentes/BottemNavBar";
 import SearchFood from "./Componentes/SearchFood";
+import MapCpt from "./Componentes/MapCpt";
 /**
  * Low level planing
  * NavBar
@@ -77,6 +78,10 @@ const Approter=createBrowserRouter([
       },{
         path: "/FavourateCard",
         element: <FavourateCard />
+      },
+      {
+        path: "/map/",
+        element: <MapCpt />
       }
    ]
   }

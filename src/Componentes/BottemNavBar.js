@@ -28,6 +28,11 @@ shopping_cart
 person
 </span>
             </div>
+            <div>
+            <Link to="/map/">
+            <img className="w-8 h-8 mt-1 cursor-pointer" src="https://cdn-icons-png.flaticon.com/128/731/731549.png"></img>
+            </Link> 
+              </div>  
         </div>
         </>
     )
