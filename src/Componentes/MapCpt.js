@@ -58,7 +58,7 @@ console.error('Fetch operation error:', error);
         <>
          <div className="">
           { 
-       mapdata.length!==0?  <MapContainer center={[22,70]} zoom={4} style={{ height: '600px', width: '300px' }}>
+       mapdata.length!==0?  <MapContainer center={[22,70]} zoom={4} style={{ height: '600px', width: '500px' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {
               
