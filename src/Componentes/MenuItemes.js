@@ -5,6 +5,7 @@ import CardState from "../Utils/CardState.js";
 import { useDispatch } from "react-redux";
 import { addItem } from "../Utils/Redux/cardSlice.js";
 const MenuItemes=({data})=>{
+  
   const dispatch=useDispatch();
   const handileOnClick=(data)=>{
    dispatch(addItem(data));

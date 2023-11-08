@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer.js";
 import MenuItemes from "./MenuItemes.js";
 import CardState from "../Utils/CardState.js";
 const MenuRestarent=(props)=>{
+  
     const {title,arrow,setArryFunctions}=props;
     const {itemCards}=props?.data?.card?.card;
     const [presntData,setPresntData]=useState(itemCards?.slice(0,5));
@@ -41,11 +42,15 @@ const MenuRestarent=(props)=>{
            loader={<p>plesse wiat load tha food</p>}
            endMessage={<p>end of data</p>}
            >
-              {itemCards && presntData.map((data,index)=>{
+              <div className="">{itemCards &&  presntData.map((data,index)=>{
                return <MenuItemes data={data} key={index}></MenuItemes>
+               
         }
+        
+        
     )
-}
+} 
+</div>
 
            </InfiniteScroll>
            
