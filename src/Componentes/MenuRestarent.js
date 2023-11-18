@@ -27,8 +27,9 @@ const MenuRestarent=(props)=>{
   }
     return(
         <>
+        <div className="">
            { itemCards && 
-           <div className="" >
+           <div className="flex justify-center items-center" >
                   <h3 className="font-bold">{title}({props?.data?.card?.card?.itemCards?.length})</h3>
                     {
                       <span onClick={setArryFunctions} className="material-symbols-outlined arrow">
@@ -39,8 +40,8 @@ const MenuRestarent=(props)=>{
            }         
            {arrow && 
            <InfiniteScroll hasMore={hasmore}dataLength={presntData.length} next={fetchdata}
-           loader={<p>plesse wiat load tha food</p>}
-           endMessage={<p>end of data</p>}
+           loader={<p className="text-center">plesse wiat load tha food</p>}
+           endMessage={<p className="text-center">end of data</p>}
            >
               <div className="">{itemCards &&  presntData.map((data,index)=>{
                return <MenuItemes data={data} key={index}></MenuItemes>
@@ -55,7 +56,12 @@ const MenuRestarent=(props)=>{
            </InfiniteScroll>
            
            }
-           
+            <div className="flex items-center justify-around mt-7">
+                <div className="w-96 h-[4px] bg-orange-400 ">
+
+                </div>
+            </div>
+           </div>
         </>
      )
 }

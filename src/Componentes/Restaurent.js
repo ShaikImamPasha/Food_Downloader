@@ -28,8 +28,8 @@ const Restaurent=()=>{
                <p>&#9733;{avgRating}</p>
                <hr style={{width: "600px",borderBottom: "1px dashed #d3d3d3"}}/> 
             </div>
-          <div className="flex items-center flex-col">
-            <div className="flex items-start flex-col">
+          <div className="">
+            <div className="">
             {menuitemes.map((data,index)=>{
                 return (
                 <>
