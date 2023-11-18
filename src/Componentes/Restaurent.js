@@ -26,7 +26,7 @@ const Restaurent=()=>{
                    {areaName},{locality}
                </div>  
                <p>&#9733;{avgRating}</p>
-               <hr style={{width: "600px",borderBottom: "1px dashed #d3d3d3"}}/> 
+               <hr style={{width: "320px",borderBottom: "1px dashed #d3d3d3"}}/> 
             </div>
           <div className="">
             <div className="">
