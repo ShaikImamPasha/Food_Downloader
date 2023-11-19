@@ -29,7 +29,7 @@ const MenuRestarent=(props)=>{
         <>
         <div className="">
            { itemCards && 
-           <div className="flex justify-center items-center" >
+           <div className="flex justify-center items-center mt-1" >
                   <h3 className="font-bold">{title}({props?.data?.card?.card?.itemCards?.length})</h3>
                     {
                       <span onClick={setArryFunctions} className="material-symbols-outlined arrow">
@@ -56,11 +56,12 @@ const MenuRestarent=(props)=>{
            </InfiniteScroll>
            
            }
-            <div className="flex items-center justify-around mt-7">
+            {itemCards && <div className="flex items-center justify-around mt-7">
                 <div className="w-96 h-[4px] bg-orange-400 ">
 
                 </div>
             </div>
+}
            </div>
         </>
      )

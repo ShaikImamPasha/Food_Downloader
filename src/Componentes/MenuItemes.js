@@ -68,16 +68,20 @@ function fun(data)
   if(a===0){return "addItem"}
   return null;
 }
-
+console.log(data.card.info)
     return(
+    
         <>
         <div className="mt-5">
           <div >
              <div className="flex items-center justify-around">
               <div>
-              <h4 className="font-bold">{data?.card?.info?.name || data?.name}</h4>
-               <p>₹{data?.card?.info?.price/100 || data?.price/100}</p>
-               <p>{data?.card?.info?.ratings?.aggregatedRating?.rating || data?.rating}</p>
+              <h4 className="font-bold">{data?.card?.info?.name }</h4>
+               <p>₹{data?.card?.info?.defaultPrice/100}</p>
+               <div className="">
+               {data.card.info.description}
+               </div>
+               <p className="font-bold">{data?.card?.info?.ratings?.aggregatedRating?.rating }</p>
               </div>
                <div>   
                 <img  loading="lazy" alt={"loading"}className="rounded-3xl w-[100px] h-[100px]" src={CDN_IMAGE_URL+data?.card?.info?.imageId ||data?.imageId}></img>

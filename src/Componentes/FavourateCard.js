@@ -9,7 +9,7 @@ const FavourateCard=()=>{
       <div className="border-solid border-2 border-orange-300 rounded-lg shadow-orange-800">
       {
         FavourateItemesCard.map((data)=>{
-          return   <div className="">
+          return  data.addSymbole===true?<div className="">
           <div className="">
              <div className="flex items-center justify-around">
               <div>
@@ -22,7 +22,7 @@ const FavourateCard=()=>{
           
        </div>
            
-            </div>
+            </div>:null
         })
         
       }
