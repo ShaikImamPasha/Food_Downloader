@@ -78,7 +78,7 @@ console.log(data.card.info)
               <div>
               <h4 className="font-bold">{data?.card?.info?.name }</h4>
                <p>₹{data?.card?.info?.defaultPrice/100}</p>
-               <div className="">
+               <div className="overflow-ellipsis overflow-hidden w-[200px] h-[55px]">
                {data.card.info.description}
                </div>
                <p className="font-bold">{data?.card?.info?.ratings?.aggregatedRating?.rating }</p>
