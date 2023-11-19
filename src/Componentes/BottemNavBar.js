@@ -17,12 +17,16 @@ home
 search
 </span>
             </div>
+            
             </Link>
+            <Link to={"/FavourateCard/"}>
             <div>
             <span class="material-symbols-outlined mt-3 cursor-pointer">
 shopping_cart
 </span>
             </div>
+            </Link>
+           
             <div>
             <span class="material-symbols-outlined mt-3 cursor-pointer">
 person
