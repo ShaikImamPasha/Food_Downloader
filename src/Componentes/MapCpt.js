@@ -9,7 +9,6 @@ const customIcon = L.icon({
   iconAnchor: [16, 32],
   popupAnchor: [0, -32],
 });
-
 const MapCpt=()=>{
     const [mapdata,setMapData]=useState([]);
     const resturentData=useSelector((state)=>state.cart.resturentData)
@@ -18,9 +17,20 @@ const MapCpt=()=>{
     const lng=useSelector((state)=>state.loc.lng);
   useEffect(()=>{
     fetchMapData();
-  },[lat,lng])
+  },[lat,lng,resturentData])
 async  function fetchMapData (){
-    const allplacesurls=resturentData?.map((data)=>{
+  if(window.screen.height>768 ){
+    const data1 = await fetch(`https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
+    var json_data=await data1.json(); 
+ console.log("mobile mode")
+}
+else{
+    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
+    var json_data=await data1.json(); 
+    console.log("desktop mode")
+}
+   json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const allplacesurls=json_data?.map((data)=>{
         return fetch(`https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
     })
     Promise.all(allplacesurls)
@@ -40,7 +50,7 @@ async  function fetchMapData (){
     return Promise.all(jsonPromises); 
      })
      .then(dataArray => {
-      resturentData.map((data,index)=>{
+      json_data.map((data,index)=>{
     dataArray[index].data[0].id=data.info.id;
     dataArray[index].data[0].resturentName=data.info.name;
    setMapData(dataArray);

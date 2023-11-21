@@ -9,7 +9,8 @@ const locationes=createSlice({
         offersOn:[],
         whatOnYourMind: [],
         mapData: "now",
-        topOfferesForYou: []
+        topOfferesForYou: [],
+        
     },
     reducers:{
         TopOfferesForYou: function(state,action){
