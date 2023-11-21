@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import Card from "./Card";
 import data from "../Utils/mockData";
+import { useSelector } from "react-redux";
 
 const Bestoffers=()=>{
+  const lat=useSelector((state)=>state.loc.lat);
+  const lng=useSelector((state)=>state.loc.lng);
     const {id}=useParams();
     const [offerimageseting,setOfferImageSeating]=useState(true);
     const [bestofferdata,setBestOfferData]=useState([]);
@@ -12,11 +15,11 @@ const Bestoffers=()=>{
        fetchdata();
    },[])
     const fetchdata=async()=>{
-        var fetcbestoffersdata=await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?lat=17.3938227&lng=78.4834733&collection=54793&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`); 
+        var fetcbestoffersdata=await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`); 
            var data=await fetcbestoffersdata.json()
            setBestOfferData(data);
           
-           //console.log(data)
+        //   console.log(data)
     }
     return(
       bestofferdata.length===0?<><Shimmer></Shimmer></>:

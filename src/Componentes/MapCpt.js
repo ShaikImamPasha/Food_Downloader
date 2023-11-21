@@ -11,12 +11,29 @@ const customIcon = L.icon({
 });
 
 const MapCpt=()=>{
+  const lat=useSelector((state)=>state.loc.lat);
+  const lng=useSelector((state)=>state.loc.lng);
     const [mapdata,setMapData]=useState([]);
-   const resturentData=useSelector((state)=>state.cart.resturentData);
-   console.log(resturentData)
+    const [resturentData,setResturentData]=useState([]);
   useEffect(()=>{
+    fetchdata();
     fetchMapData();
   },[resturentData])
+  const fetchdata=async ()=>{
+    if(window.screen.height>768 ){
+        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
+        var json_data=await data1.json(); 
+     console.log("mobile mode")
+    }
+    else{
+        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
+        var json_data=await data1.json(); 
+        console.log("desktop mode")
+    }
+   json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+     setResturentData(json_data);
+  }
+    
   function fetchMapData(){
     const allplacesurls=resturentData?.map((data)=>{
         return fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
@@ -58,7 +75,7 @@ console.error('Fetch operation error:', error);
         <>
          <div className="">
           { 
-       mapdata.length!==0?  <MapContainer center={[22,70]} zoom={4} style={{ height: '600px', width: '500px' }}>
+       mapdata.length!==0?  <MapContainer center={[22,70]} zoom={4} style={{ height: '100px', width: '500px' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {
               
