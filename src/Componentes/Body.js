@@ -38,17 +38,16 @@ var arrr=[];
     if(800<=window.screen.height){
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
-     console.log("mobile mode")
+     console.log("mobile mode",json_data)
     }
     else{
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
         console.log("desktop mode")
-
     }
         
 
-         dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
+     dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
      dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
          json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
