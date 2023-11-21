@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ClipLoader   from "react-spinners/ClipLoader";
 import { useState, CSSProperties } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import locationes, { addWhatOnYourMind,addOffersOn,addMapResturenData } from "../Utils/Redux/locationes.js";
+import locationes, { addWhatOnYourMind,addOffersOn,addMapResturenData,TopOfferesForYou } from "../Utils/Redux/locationes.js";
 import { Ti } from "../Utils/Redux/cardSlice.js";
 import { addResturentData } from "../Utils/Redux/cardSlice.js";
 import Slider from "./Slider.js";
@@ -25,6 +25,7 @@ const Body=(props)=>{
     const lat=useSelector((states)=>states.loc.lat);
     const lng=useSelector((states)=>states.loc.lng);
     const whatOnYourMind=useSelector((state)=>state.loc.whatOnYourMind);
+    const topOfferesForYou=useSelector((state)=>state.loc.topOfferesForYou);
     const offersOn=useSelector((state)=>state.loc.offersOn);
     const mapData=useSelector((state)=>state.loc.mapData);
   //  console.log(mapData)
@@ -38,7 +39,7 @@ var arrr=[];
     if(window.screen.height>768 ){
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
-     console.log("mobile mode",json_data)
+     console.log("mobile mode")
     }
     else{
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
@@ -46,7 +47,7 @@ var arrr=[];
         console.log("desktop mode")
     }
         
-
+    dispatch(TopOfferesForYou(json_data?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants))
      dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
      dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
@@ -94,13 +95,19 @@ var arrr=[];
        : 
        <div className="mb-11">
         <div className="">
+            {
+                topOfferesForYou===undefined?null:topOfferesForYou.length!==0?<div className="flex items-center flex-wrap flex-col">
+                <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
+                    {<Slider data={"topOfferesForYou"}/>}
+                </div>:null
+            }
             { offersOn===undefined?null:offersOn.length!==0?<div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
-                {<Slider data={true}/>}
+                {<Slider data={"offersOn"}/>}
             </div>:null}
             <div className="flex items-center flex-wrap flex-col">
          {whatOnYourMind===undefined?null:whatOnYourMind.length!==0?<div><h1 className="font-black mt-6">  What's on your mind?</h1>
-         <Slider data={false}/></div>:null}
+         <Slider data={"whatOnYourMind"}/></div>:null}
             </div>
         </div>
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}

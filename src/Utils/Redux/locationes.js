@@ -8,9 +8,13 @@ const locationes=createSlice({
         lng:78.4863827,
         offersOn:[],
         whatOnYourMind: [],
-        mapData: "now"
+        mapData: "now",
+        topOfferesForYou: []
     },
     reducers:{
+        TopOfferesForYou: function(state,action){
+            return {...state,topOfferesForYou: action.payload};
+         },
         addLocation: function(state,action){
            return {...state,isOpen: action.payload};
         },
@@ -35,5 +39,5 @@ const locationes=createSlice({
         }
     }
 })
-export const {addLocation,addPlaceName,addLat,addLng,addOffersOn,addWhatOnYourMind,addMapResturenData}=locationes.actions;
+export const {addLocation,addPlaceName,addLat,addLng,addOffersOn,addWhatOnYourMind,addMapResturenData,TopOfferesForYou}=locationes.actions;
 export default locationes.reducer;
