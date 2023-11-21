@@ -37,7 +37,7 @@ const Body=(props)=>{
 var arrr=[];
   const fetchdata=async ()=>{
     if(window.screen.height>768 ){
-        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
+        const data1 = await fetch(`https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
      console.log("mobile mode")
     }

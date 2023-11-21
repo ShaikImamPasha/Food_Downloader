@@ -46,7 +46,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
           <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
            <div>
            {
-               isOpen && <div className="bg-white h-[650px] fixed  left-0 top-0 flex-wrap">
+               isOpen && <div className="bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20">
                    <div className="w-full">
                    <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[300px] w-full">
                       close
@@ -60,7 +60,7 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
                     <span  className="font-medium">Get Curront loction Using Gps</span>
                     </div>
             </div>
-                    <div className="bg-white  h-[400px] w-[400px] overflow-auto ">
+                    <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
                           {searchlocatines?<SearchLocationes className="" data={searchlocatines}/>:null}
                     </div>
                 </div>
