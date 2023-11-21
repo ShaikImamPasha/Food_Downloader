@@ -36,21 +36,22 @@ const Body=(props)=>{
 var arrr=[];
   const fetchdata=async ()=>{
     if(800<=window.screen.height){
-        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
+        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
-        console.log("mobile mode")
+     console.log(json_data,"mobile mode")
     }
     else{
-        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`)
+        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
         var json_data=await data1.json(); 
-        console.log("desktop mode")
+       // console.log("desktop mode",json_data)
+
     }
         
 
-         dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
-         dispatch(addWhatOnYourMind(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
+         dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
+     dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
-         json_data=json_data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+         json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
          json_data && setTemdata(json_data.slice(0,8));
        
 
