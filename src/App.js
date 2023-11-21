@@ -14,6 +14,7 @@ import FavourateCard from "./Componentes/FavourateCard";
 import BottemNavBar from "./Componentes/BottemNavBar";
 import SearchFood from "./Componentes/SearchFood";
 import MapCpt from "./Componentes/MapCpt";
+import Bestoffers from "./Componentes/Bestoffers";
 /**
  * Low level planing
  * NavBar
@@ -82,6 +83,10 @@ const Approter=createBrowserRouter([
       {
         path: "/map/",
         element: <MapCpt />
+      },
+      {
+        path: "/bestoffers/:id",
+        element: <Bestoffers />
       }
    ]
   }

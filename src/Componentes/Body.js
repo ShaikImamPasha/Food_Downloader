@@ -96,18 +96,20 @@ var arrr=[];
        <div className="mb-11">
         <div className="">
             {
-                topOfferesForYou===undefined?null:topOfferesForYou.length!==0?<div className="flex items-center flex-wrap flex-col">
-                <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
+                topOfferesForYou===undefined?null:topOfferesForYou.length!==0?<div className="flex items-center flex-wrap flex-col mb-1">
+             <p className="font-black mt-6 inline-block"><span><img className="inline-block w-[25px] h-[25px]" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/sl9oogwe7n5dusolt5xe"></img></span>Top Picks for you</p>
                     {<Slider data={"topOfferesForYou"}/>}
                 </div>:null
             }
             { offersOn===undefined?null:offersOn.length!==0?<div className="flex items-center flex-wrap flex-col">
             <h1 className="font-black mt-6">Best Offers For You{lat}</h1>
                 {<Slider data={"offersOn"}/>}
-            </div>:null}
+            </div>:null
+            }
             <div className="flex items-center flex-wrap flex-col">
-         {whatOnYourMind===undefined?null:whatOnYourMind.length!==0?<div><h1 className="font-black mt-6">  What's on your mind?</h1>
-         <Slider data={"whatOnYourMind"}/></div>:null}
+           {whatOnYourMind===undefined?null:whatOnYourMind.length!==0?<div><h1 className="font-black mt-6 text-center">  What's on your mind?</h1>
+         <Slider data={"whatOnYourMind"}/></div>:null
+           }
             </div>
         </div>
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}

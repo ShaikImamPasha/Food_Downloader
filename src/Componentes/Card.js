@@ -3,6 +3,7 @@ import { CDN_IMAGE_URL } from "../Utils/constant";
 import { addItem } from "../Utils/Redux/cardSlice";
 import { useDispatch } from "react-redux";
 const Card=(props)=>{     //props is js object
+   // console.log(props)
     var {name,locality,areaName,costForTwo,cloudinaryImageId, cuisines,avgRating,id}=props?.data.info;
 
      return(
