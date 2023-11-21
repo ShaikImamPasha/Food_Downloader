@@ -38,10 +38,12 @@ var arrr=[];
     if(800<=window.screen.height){
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`)
         var json_data=await data1.json(); 
+        console.log("mobile mode")
     }
     else{
         const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`)
         var json_data=await data1.json(); 
+        console.log("desktop mode")
     }
         
 
