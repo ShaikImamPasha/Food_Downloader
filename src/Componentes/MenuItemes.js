@@ -4,9 +4,18 @@ import { useContext,useState} from "react";
 import CardState from "../Utils/CardState.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem,increamentItem } from "../Utils/Redux/cardSlice.js";
+import Test from "./Test.js";
 const MenuItemes=({data})=>{
   const itemes=useSelector((state)=>state.cart.itemes)
   const dispatch=useDispatch();
+  const [isVisible, setIsVisible] = useState(false);
+  const showPopup = () => {
+    setIsVisible(true);
+
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 2000); // Adjust the timing as needed
+  };
 
   const handileOnClick=(data)=>{
     var a=true;
@@ -65,48 +74,53 @@ function fun(data)
        a++;
     }
   }
-  if(a===0){return "addItem"}
+  if(a===0){return button1}
   return null;
 }
-console.log(data.card.info)
+var button1= <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"onClick={showPopup}>AddItem </button>
     return(
     
         <>
         <div className="mt-5">
           <div >
-             <div className="flex items-center justify-around">
+             <div className="flex items-center justify-around">  {/*Data for card */}
               <div>
-              <h4 className="font-bold">{data?.card?.info?.name }</h4>
-               <p>₹{data?.card?.info?.defaultPrice/100}</p>
-               <div className="overflow-ellipsis overflow-hidden w-[200px] h-[55px]">
-               {data.card.info.description}
-               </div>
-               <p className="font-bold">{data?.card?.info?.ratings?.aggregatedRating?.rating }</p>
+              {isVisible && (<div className="absolute left-52  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-11 w-[40%] text-center "
+                                  style={{ backgroundColor: '#68d391' }}
+                                   >
+                                 <p className="text-white font-bold text-center text-2xl">Added successfully!</p>
+                              </div>
+                            )}
+                  <h4 className="font-bold">{data?.card?.info?.name }</h4>
+                  <p>₹{data?.card?.info?.defaultPrice/100}</p>
+                 <div className="overflow-ellipsis overflow-hidden w-[200px] h-[55px]">
+                     {data.card.info.description}
+                 </div>
+                     <p className="font-bold">{data?.card?.info?.ratings?.aggregatedRating?.rating }</p>
               </div>
-               <div>   
-                <img  loading="lazy" alt={"loading"}className="rounded-3xl w-[100px] h-[100px]" src={CDN_IMAGE_URL+data?.card?.info?.imageId ||data?.imageId}></img>
-                <div className="flex justify-around w-20 rounded-md border-solid border-2  border-orange-300 shadow-orange-50 h-8 bg-white"> 
-             {
-                itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{dec(data)}}>-</div>:null)
-               }
-              <button className="text-orange-400"onClick={()=>handileOnClick(data)}>
-               {
-                itemes.length===0?"addItem":fun(data)
-               }
-                {
-                itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?da?.count:
-                da?.id===data?.card?.info?.id  && da?.addSymbole===false?"addItem":null
-                )  
-                }
-              
-              </button>
-              {
-                itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{inc(data)}}>+</div>:null)
-               }
+              <div>   {/**card add ,remove butoon  */}
+                   <img  loading="lazy" alt={"loading"}className="rounded-3xl w-[100px] h-[100px]" src={CDN_IMAGE_URL+data?.card?.info?.imageId ||data?.imageId}></img>
+                   <div className="flex justify-around w-20 rounded-md border-solid border-2  border-orange-300 shadow-orange-50 h-8 bg-white"> 
+                  {
+                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{dec(data)}}>-</div>:null)
+                  }
+                <div className="text-orange-400"onClick={()=>handileOnClick(data)}>
+                  {
+                     itemes.length===0?button1:fun(data)
+                  }
+                 {
+                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?da?.count:
+                    da?.id===data?.card?.info?.id  && da?.addSymbole===false?button1:null
+                    )  
+                  }
+                 </div>
+                 {
+                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{inc(data)}}>+</div>:null)
+                 }
                   </div> 
               </div>
-            </div>
-           <div className="flex items-center justify-around">
+         </div>
+         <div className="flex items-center justify-around">
                 <div className="w-96 h-1 bg-green-200">
 
                 </div>

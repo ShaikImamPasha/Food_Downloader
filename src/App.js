@@ -42,7 +42,7 @@ const AppLayout=()=>{
            <CardState.Provider value={{no: cardNumber,setCardNumber}}>
               <UserContext.Provider value={{loggedIn: "pasha"}}>
                  <div className="app">
-                   <objtype.Header/>
+                  <objtype.Header></objtype.Header>
                    <BottemNavBar></BottemNavBar>
                   <Outlet />
                  </div>
