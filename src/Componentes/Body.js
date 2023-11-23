@@ -42,12 +42,12 @@ var arrr=[];
         console.log("desktop mode")
         var json_data=await data1.json(); 
         console.log(json_data)
-        dispatch(TopOfferesForYou(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
+        dispatch(TopOfferesForYou(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
    //      dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
-         dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
+         dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
         
           
-           json_data=json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+           json_data=json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             json_data && setTemdata(json_data.slice(0,8));
            setOrgenaldata(json_data);
            dispatch(addResturentData(json_data))
