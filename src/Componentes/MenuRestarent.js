@@ -57,7 +57,7 @@ const MenuRestarent=(props)=>{
            
            }
             {itemCards && <div className="flex items-center justify-around mt-7">
-                <div className="w-96 h-[4px] bg-orange-400 ">
+                <div className="w-96 h-[4px] bg-gray-400 ">
 
                 </div>
             </div>

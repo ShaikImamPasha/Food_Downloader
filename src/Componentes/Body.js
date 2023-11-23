@@ -83,14 +83,12 @@ var arrr=[];
         }
     return(
         //CONDITIONAL RANDARING
-       tempdata.length===0?<div><div className="bg-black h-56 flex items-center justify-center">
-                        <ClipLoader
-  color="white"
-  size={90}
-  speedMultiplier={0.7}
-/><img className="w-13 h-12 absolute" src="https://cdn.create.vista.com/api/media/small/470797866/stock-vector-big-hamburger-silver-plated-metallic-icon"></img>
-</div>
-                         <Shimmer/>     
+       tempdata.length===0?<div >
+           <div className="w-full mt-10 bg-white rounded-lg shadow-lg">
+      <div className="animate-pulse bg-gray-300 h-40 w-full flex items-center justify-center">
+      </div>
+     
+    </div>{           <Shimmer/>      }
        </div>
        : 
        <div className="mb-11">

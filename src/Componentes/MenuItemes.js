@@ -8,12 +8,20 @@ import Test from "./Test.js";
 const MenuItemes=({data})=>{
   const itemes=useSelector((state)=>state.cart.itemes)
   const dispatch=useDispatch();
-  const [isVisible, setIsVisible] = useState(false);
-  const showPopup = () => {
+  const [isVisibleAdd, setIsVisible] = useState(false);
+   const [isVisibleRemove, setIsVisibleRemove] = useState(false);
+  const showPopupGreen = () => {
     setIsVisible(true);
 
     setTimeout(() => {
       setIsVisible(false);
+    }, 2000); // Adjust the timing as needed
+  };
+  const showPopupRed = () => {
+    setIsVisibleRemove(true);
+
+    setTimeout(() => {
+      setIsVisibleRemove(false);
     }, 2000); // Adjust the timing as needed
   };
 
@@ -77,7 +85,7 @@ function fun(data)
   if(a===0){return button1}
   return null;
 }
-var button1= <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"onClick={showPopup}>AddItem </button>
+var button1= <button className="w-20 h-8 bg-green-500 border-green-800 text-white rounded-3xl border-2  hover:bg-green-700"onClick={showPopupGreen}>AddItem </button>
     return(
     
         <>
@@ -85,12 +93,18 @@ var button1= <button className="px-4 py-2 bg-green-500 text-white rounded hover:
           <div >
              <div className="flex items-center justify-around">  {/*Data for card */}
               <div>
-              {isVisible && (<div className="absolute left-52  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-11 w-[40%] text-center "
+              {isVisibleAdd && (<div className="absolute left-24  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-16 w-[40%] text-center "
                                   style={{ backgroundColor: '#68d391' }}
                                    >
-                                 <p className="text-white font-bold text-center text-2xl">Added successfully!</p>
+                                 <p className="text-black font-bold text-center text-2xl">Added successfully!</p>
                               </div>
                             )}
+               {isVisibleRemove && (<div className="absolute left-24  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-16 w-[40%] text-center "
+                                  style={{ backgroundColor: 'red' }}
+                                   >
+                                 <p className="text-black font-bold text-center text-2xl">Removed successfully!</p>
+                              </div>
+                            )}             
                   <h4 className="font-bold">{data?.card?.info?.name }</h4>
                   <p>₹{data?.card?.info?.defaultPrice/100}</p>
                  <div className="overflow-ellipsis overflow-hidden w-[200px] h-[55px]">
@@ -100,9 +114,9 @@ var button1= <button className="px-4 py-2 bg-green-500 text-white rounded hover:
               </div>
               <div>   {/**card add ,remove butoon  */}
                    <img  loading="lazy" alt={"loading"}className="rounded-3xl w-[100px] h-[100px]" src={CDN_IMAGE_URL+data?.card?.info?.imageId ||data?.imageId}></img>
-                   <div className="flex justify-around w-20 rounded-md border-solid border-2  border-orange-300 shadow-orange-50 h-8 bg-white"> 
+                   <div className="relative -top-7 left-2 flex justify-around w-20 rounded-3xl border-solid border-2  border-orange-300 shadow-orange-50 h-8 bg-white"> 
                   {
-                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{dec(data)}}>-</div>:null)
+                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div className="hover:cursor-pointer" onClick={()=>{dec(data);showPopupRed()}}>-</div>:null)
                   }
                 <div className="text-orange-400"onClick={()=>handileOnClick(data)}>
                   {
@@ -115,7 +129,7 @@ var button1= <button className="px-4 py-2 bg-green-500 text-white rounded hover:
                   }
                  </div>
                  {
-                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div onClick={()=>{inc(data)}}>+</div>:null)
+                    itemes.length!==0 && itemes.map((da)=>da?.id===data?.card?.info?.id && da?.addSymbole && da?.addSymbole===true?<div className="hover:cursor-pointer" onClick={()=>{inc(data);showPopupGreen()}}>+</div>:null)
                  }
                   </div> 
               </div>
