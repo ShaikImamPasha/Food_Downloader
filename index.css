@@ -49,4 +49,17 @@
   animation: fadeOut 1.5s ease-in-out 2s; /* Delay for 4 seconds */
 }
 
+/*line at top  */
+@keyframes moveLine {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-loading-line {
+  animation: moveLine 2s linear infinite;
+}
 

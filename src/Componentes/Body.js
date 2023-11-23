@@ -36,31 +36,35 @@ const Body=(props)=>{
 
 var arrr=[];
   const fetchdata=async ()=>{
-    if(window.screen.height>768 ){
-        const data1 = await fetch(`https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
-        var json_data=await data1.json(); 
-     console.log("mobile mode")
-    }
-    else{
-        const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-        var json_data=await data1.json(); 
+    var data1 = await fetch(`https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
+    if(data1.status===404 && data1.ok===false){
+         data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
         console.log("desktop mode")
-    }
+        var json_data=await data1.json(); 
+        console.log(json_data)
+        dispatch(TopOfferesForYou(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
+   //      dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
+         dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
         
-    dispatch(TopOfferesForYou(json_data?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants))
-     dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
-     dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
+          
+           json_data=json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            json_data && setTemdata(json_data.slice(0,8));
+           setOrgenaldata(json_data);
+           dispatch(addResturentData(json_data))
+    }else{
+        console.log("mobile mode")
+    var json_data=await data1.json();
+    console.log(json_data) 
+     dispatch(TopOfferesForYou(json_data?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants))
+      dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info ))
+      dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info ))
         //    dispatch(Ti([json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[0],json_data?.data?.cards[0]?.card?.card?.imageGridCards?.info[1]]))
-         json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-         json_data && setTemdata(json_data.slice(0,8));
-       
+        json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants;
 
-
-
-
-  
+        json_data && setTemdata(json_data.slice(0,8));
         setOrgenaldata(json_data);
         dispatch(addResturentData(json_data))
+    }
         }
     
       
@@ -84,7 +88,8 @@ var arrr=[];
     return(
         //CONDITIONAL RANDARING
        tempdata.length===0?<div >
-           <div className="w-full mt-10 bg-white rounded-lg shadow-lg">
+      <div className="bg-white"> <div className="h-[2px] bg-orange-500 fixed top-0 left-0 w-0 animate-loading-line "></div></div>
+           <div className="w-full mt-5 bg-white rounded-lg shadow-lg">
       <div className="animate-pulse bg-gray-300 h-40 w-full flex items-center justify-center">
       </div>
      
