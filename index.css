@@ -60,6 +60,6 @@
 }
 
 .animate-loading-line {
-  animation: moveLine 2s linear infinite;
+  animation: moveLine 0.8s linear infinite;
 }
 

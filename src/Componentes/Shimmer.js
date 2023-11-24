@@ -5,7 +5,7 @@ const Shimmer=()=>{
           {
             data.map(()=>{
                 return(
-                    <div className="w-[150pxpx] overflow-hidden mt-2 bg-white rounded-lg shadow-lg">
+                    <div className="w-[150px] overflow-hidden mt-2 bg-white rounded-lg shadow-lg">
                     <div className="animate-pulse bg-gray-300 h-40 w-full"></div>
                     <div className="p-6">
                       <div className="animate-pulse bg-gray-300 h-4 w-26 mb-4"></div>

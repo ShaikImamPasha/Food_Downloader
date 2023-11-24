@@ -88,9 +88,8 @@ var arrr=[];
     return(
         //CONDITIONAL RANDARING
        tempdata.length===0?<div >
-      <div className="bg-white"> <div className="h-[2px] bg-orange-500 fixed top-0 left-0 w-0 animate-loading-line "></div></div>
            <div className="w-full mt-5 bg-white rounded-lg shadow-lg">
-      <div className="animate-pulse bg-gray-300 h-40 w-full flex items-center justify-center">
+      <div className="animate-pulse bg-gray-300 h-56 w-full flex items-center justify-center">
       </div>
      
     </div>{           <Shimmer/>      }
