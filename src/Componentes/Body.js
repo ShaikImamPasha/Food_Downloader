@@ -53,7 +53,7 @@ var arrr=[];
            setOrgenaldata(json_data);
            dispatch(addResturentData(json_data))
     }else{
-        console.log("mobile mode")
+        console.log("mobile mode new")
     var json_data=await data1.json();
     console.log(json_data) 
      dispatch(TopOfferesForYou(json_data?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants))
