@@ -47,30 +47,53 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
           {restaurants.length===0?<div className="bg-white"> <div className="h-[4px] bg-orange-500 fixed top-0 left-0 w-0 animate-loading-line "></div></div>:null}
            <div>
            {
-               isOpen && <div className="bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20">
+               isOpen===true?<div className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-in`}>
                    <div className="w-full">
-                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-5 ml-[300px] w-full">
+                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-1 ml-[370px] w-full">
                       close
                    </span>
-                   <input className="w-full h-[40px] shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
+                   <input className="w-full h-12 shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
                     </div>
         
-            <div  className="h-[50px] w-full border border-solid cursor-pointer flex flex-wrap mt-10 mb-7 justify-center items-center">
-                  <span class="material-symbols-outlined">my_location</span>
+            <div  className="h-[50px] w-full  cursor-pointer flex flex-wrap mt-10 mb-2  items-center">
+                  <span class="material-symbols-outlined ml-2">my_location</span>
                     <div >
-                    <span  className="font-medium">Get Curront loction Using Gps</span>
+                    <span  className="font-medium ml-3">Use Current Location</span>
+                    <p className="text-gray-500 ml-3"> Using Gps</p>
                     </div>
             </div>
+            <hr className="ml-11 mt-5 border border-solid border-black"></hr>
                     <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
                           {searchlocatines?<SearchLocationes className="" data={searchlocatines}/>:null}
                     </div>
-                </div>
-                
-            }
-            <div className="flex flex-wrap items-center justify-center">
+                </div>:isOpen===false?
+               <div className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-out`}>
+                <div className="w-full">
+                <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-1 ml-[370px] w-full">
+                   close
+                </span>
+                <input className="w-full h-12 shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
+                 </div>
+     
+         <div  className="h-[50px] w-full  cursor-pointer flex flex-wrap mt-10 mb-2  items-center">
+               <span class="material-symbols-outlined ml-2">my_location</span>
+                 <div >
+                 <span  className="font-medium ml-3">Use Current Location</span>
+                 <p className="text-gray-500 ml-3"> Using Gps</p>
+                 </div>
+         </div>
+         <hr className="ml-11 mt-5 border border-solid border-black"></hr>
+                 <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
+                       {searchlocatines?<SearchLocationes className="" data={searchlocatines}/>:null}
+                 </div>
+             </div> 
+             :null
+                }                
+            
+            <div onClick={()=>dispatch(addLocation(true))} className="flex flex-wrap items-center justify-center">
            <img className=" h-[80px]" src={LOGO_URL}/>
-          <span onClick={()=>dispatch(addLocation(true))} class="material-symbols-outlined cursor-pointer">add_location</span> <div>
-           <p className="font-semibold ml-2">Other</p>
+          <span  class="material-symbols-outlined cursor-pointer">add_location</span> <div>
+           <p  className="font-semibold ml-2">Other</p>
            </div>
             </div>
             <div>

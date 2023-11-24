@@ -62,4 +62,37 @@
 .animate-loading-line {
   animation: moveLine 0.8s linear infinite;
 }
+/* slow motion from left to right and right to left */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 1.5s ease-in-out;
+}
+
+.animate-slide-out {
+  animation: slideOut 1.7s ease-in-out forwards;
+}
+
+.hidden {
+  display: none;
+}

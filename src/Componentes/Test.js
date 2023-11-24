@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 
+
 const Test = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const showPopup = () => {
-    setIsVisible(true);
-
-    setTimeout(() => {
-      setIsVisible(false);
-    }, 2000); // Adjust the timing as needed
+  const toggleVisibility = () => {
+    setIsVisible((prev) => !prev);
   };
 
   return (
-    <div className="z-50">
+    <div className="flex flex-col items-center">
+      <button
+        onClick={toggleVisibility}
+        className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
+      >
+        Toggle Card
+      </button>
+
       {isVisible && (
-        <div
-          className="absolute left-1/2 transform -translate-x-1/2 bg-white p-8 shadow-lg animate-fade-in-down"
-          style={{ backgroundColor: '#68d391' }}
-        >
-          <p className="text-2xl text-white font-bold">Added successfully!</p>
+        <div className="card-container animate-slide-in">
+          <div className="card bg-white p-4">
+            <p>Your card content goes here</p>
+          </div>
         </div>
       )}
 
-      <button
-        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
-        onClick={showPopup}
-      >
-        Click me
-      </button>
+      {!isVisible && (
+        <div className={`card-container animate-slide-out ${isVisible ? 'hidden' : ''}`}>
+          <div className="card bg-white p-4">
+            <p>Your card content goes here</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

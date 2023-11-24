@@ -59,7 +59,7 @@ const Slider=(props)=>{
             }):props.data==="topOfferesForYou"?topOfferesForYou.map((imageUrl, index) => {
               return (
              <Link to={"/restaurent/"+imageUrl?.info?.id}>
-                   <div className="flex ml-2 flex-col bg-gray-100 rounded-sm h-48" key={index}>
+                   <div className="flex ml-2 flex-col bg-gray-[2px] rounded-sm h-48" key={index}>
                   <img className="w-[100px] h-[100px] rounded-lg" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/"+imageUrl.info.cloudinaryImageId} alt="movie" />
                  { imageUrl?.info?.aggregatedDiscountInfoV3 &&  <div className=" text-center absolute top-[60px] bg-white border rounded-md w-[75px] left-4">
                     <small className="text-[14px] text-orange-800 font-bold">{imageUrl?.info?.aggregatedDiscountInfoV3?.header}</small><br></br>

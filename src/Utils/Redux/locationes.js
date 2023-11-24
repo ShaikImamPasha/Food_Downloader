@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const locationes=createSlice({
     name:"locationes",
     initialState:{
-        isOpen:false,
-        locationName:"hii",
+        isOpen:null,
+        locationName:"hyderabad",
         lat:17.3856088,
         lng:78.4863827,
         offersOn:[],

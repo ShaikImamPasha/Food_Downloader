@@ -13,6 +13,7 @@ import Slider from "./Slider.js";
 import MapComponent from "./MapComponent.js";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Test from "./Test.js";
 const Body=(props)=>{
      //state vairable  -super powerful vairable
      const resdata=useState([]);
@@ -95,7 +96,7 @@ var arrr=[];
     </div>{           <Shimmer/>      }
        </div>
        : 
-       <div className="mb-11">
+       <div className="mb-11 z-30">
         <div className="">
             {
                 topOfferesForYou===undefined?null:topOfferesForYou.length!==0?<div className="flex items-center flex-wrap flex-col mb-1">
@@ -117,7 +118,7 @@ var arrr=[];
         <InfiniteScroll dataLength={tempdata.length} next={loadNextData} hasMore={hasmore} loader={<Shimmer/>}
        endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>}>
         <div>
-       <div className="flex flex-wrap items-center justify-center">
+       <div className="flex flex-wrap items-center justify-around mt-5">
                 {tempdata.map((information)=>{
                  return(
                  information.info.aggregatedDiscountInfoV3?<CardWithDiscount key={information.info.id} data={information}/>:<Card key={information.info.id} data={information}></Card>
