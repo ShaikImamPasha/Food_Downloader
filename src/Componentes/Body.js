@@ -37,7 +37,7 @@ const Body=(props)=>{
 
 var arrr=[];
   const fetchdata=async ()=>{
-    var data1 = await fetch(`https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
+    var data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
     if(data1.status===404 && data1.ok===false){
          data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
         console.log("desktop mode")
