@@ -1,7 +1,7 @@
 import Shimmer from "./Shimmer";
 import MenuRestarent from "./MenuRestarent";
 import { useParams } from "react-router-dom";
-import useResturent from "../Utils/useResturent";
+import useResturent from "../Utils/Custom_Hooks/useResturent";
 import { useState } from "react";
 const Restaurent=()=>{
     const {resid}=useParams();

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { apiMenuItemes } from "./constant";
+import { apiMenuItemes } from "../constant";
 const useResturent=(resid)=>{
     const [resInfo,setResInfo]=useState(null);
     useEffect(()=>{

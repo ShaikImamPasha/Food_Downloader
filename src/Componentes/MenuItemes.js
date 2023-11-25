@@ -1,7 +1,6 @@
 import { CDN_IMAGE_URL } from "../Utils/constant.js";
-import {CardState} from "../Utils/CardState.js";
 import { useContext,useState} from "react";
-import CardState from "../Utils/CardState.js";
+import CardState from "../Utils/Context/CardState.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem,increamentItem } from "../Utils/Redux/cardSlice.js";
 import Test from "./Test.js";

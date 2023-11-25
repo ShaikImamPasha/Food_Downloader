@@ -25,8 +25,27 @@ const Slider=(props)=>{
           slidesToSlide: 1 // optional, default to 1.
         }
       };
+      const CustomNextArrow = ({ onClick, ...rest }) => (
+        <button
+          onClick={() => onClick()}
+          className="custom-arrow next"
+          {...rest}
+        >
+          Top
+        </button>
+      );
+    
+      const CustomPrevArrow = ({ onClick, ...rest }) => (
+        <button
+          onClick={() => onClick()}
+          className="custom-arrow prev"
+          {...rest}
+        >
+          Top
+        </button>
+      );
       return (
-        <div className="w-[400px] h-[200px] ">
+        <div className="w-[400px] h-[200px] -z-[2]">
           <Carousel
             responsive={responsive}
             autoPlay={true}
@@ -37,6 +56,8 @@ const Slider=(props)=>{
             partialVisible={false}
             dotListClass="custom-dot-list-style"
            removeArrowOnDeviceType={props.data==="topOfferesForYou"?["tablet", "mobile"]:null} 
+           customNextArrow={<CustomNextArrow />}
+           customPrevArrow={<CustomPrevArrow />}
           >
             {props.data==="offersOn"?offersOn.map((imageUrl, index) => {
               const {entityId}=imageUrl;
@@ -80,3 +101,4 @@ const Slider=(props)=>{
       );
 };
 export default Slider;
+

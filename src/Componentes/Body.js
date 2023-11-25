@@ -28,6 +28,7 @@ const Body=(props)=>{
     const whatOnYourMind=useSelector((state)=>state.loc.whatOnYourMind);
     const topOfferesForYou=useSelector((state)=>state.loc.topOfferesForYou);
     const offersOn=useSelector((state)=>state.loc.offersOn);
+    
     const mapData=useSelector((state)=>state.loc.mapData);
   //  console.log(mapData)
     const dispatch=useDispatch();

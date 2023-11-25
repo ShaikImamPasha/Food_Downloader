@@ -1,43 +1,36 @@
 import { LOGO_URL } from "../Utils/constant";
 import {Link} from "react-router-dom";
-import useOnlineStates from "../Utils/useOnlineStates";
+import useOnlineStates from "../Utils/Custom_Hooks/useOnlineStates";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../Utils/UserContext";
-import CardState from "../Utils/CardState";
+import UserContext from "../Utils/Context/UserContext";
+import CardState from "../Utils/Context/CardState";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import SearchLocationes from "./SearchLocationes";
-import Location from "../Utils/Location";
+import GetCurronLocation from "../Utils/Custom_Hooks/useGetCurrontLocation";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../Utils/Redux/locationes";
+import useGetPlace_Id from "../Utils/Custom_Hooks/useGetPlace_Id";
 export const Header=()=>{
     const dispatch=useDispatch();
     const states=useOnlineStates(); 
+    const searchlocatines=useSelector((state)=>state.loc.searchlocatines)
+    const [placeSearch,setPlaceSearch]=useGetPlace_Id();
     const [curtntLocation,setcurontLocation]=useState("");
     const itemCards=useSelector((state)=>state.cart.itemes); 
     const isOpen=useSelector((state)=>state.loc.isOpen)
     const locationName=useSelector((states)=>states.loc.locationName);
     const [openSearchLocation,setOpenSearchLocatoon]=useState(false);
-    const [placeSearch,setPlaceSearch]=useState("");
-    const [searchlocatines,setSearchLocatines]=useState([]);
-   const restaurants=useSelector((state)=>state.cart.resturentData)
+   const restaurants=useSelector((state)=>state.cart.resturentData);
 
  // console.log(locationName)
-
-    useEffect(()=>{
-       fetchdata();
-    },[placeSearch])
-
-    async function fetchdata(){
-        var data=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${placeSearch}`);
-        data=await data.json();
-        setSearchLocatines(data.data);
-
-    }
-
-  
    
    async function getlocation(){
-navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coords.latitude,data.coords.longitude))},()=>{})
+navigator.geolocation.getCurrentPosition(async(data)=>{
+   var dataa=await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${data.coords.latitude}&longitude=${data.coords.longitude}`)
+   dataa=await dataa.json();
+     console.log(dataa.city)
+     setPlaceSearch(dataa.city)
+   },()=>{})
     }
 
 
@@ -57,9 +50,9 @@ navigator.geolocation.getCurrentPosition((data)=>{console.log(Location(data.coor
         
             <div  className="h-[50px] w-full  cursor-pointer flex flex-wrap mt-10 mb-2  items-center">
                   <span class="material-symbols-outlined ml-2">my_location</span>
-                    <div >
-                    <span  className="font-medium ml-3">Use Current Location</span>
-                    <p className="text-gray-500 ml-3"> Using Gps</p>
+                    <div  onClick={()=>{getlocation();}}>
+                    <span  className="font-medium ml-3 cursor-pointer"  >Use Current Location</span>
+                    <p className="text-gray-500 ml-3 cursor-pointer" > Using Gps</p>
                     </div>
             </div>
             <hr className="ml-11 mt-5 border border-solid border-black"></hr>

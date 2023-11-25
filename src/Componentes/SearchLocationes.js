@@ -1,28 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, addPlaceName,addLat,addLng } from "../Utils/Redux/locationes";
 import { useEffect, useState } from "react";
+import useSetLat_Lng from "../Utils/Custom_Hooks/useSetLat_Lng";
 const SearchLocationes=(props)=>{
     const {data}=props;
-   // console.log(data)
+    const [custom_hook_lat_lng_data,setCustomHook_Lat_Lng_Fun]=useSetLat_Lng();
     const dispatch=useDispatch();
 
-    async function setLocation(data){
-       const url=`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/address-recommend?place_id=${data}`
-         var data1=await fetch(url);
-        data1=await data1.json();
-        // console.log(data1)
-      //  console.log(data1.data[0].geometry.location.lng);
-        dispatch(addLat(data1.data[0].geometry.location.lat))
-        dispatch(addLng(data1.data[0].geometry.location.lng))
-    }
     return(
         <> 
        {
        data.length===0?<div   className="cursor-pointer w-full  bg-black"><h3>Not Available Location</h3></div>:data.map((data)=>{
             return(
             <div>  
-                 <div  onClick={()=>{setLocation(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-[150px]  cursor-pointer flex items-center justify-start ">
-                <div onClick={()=>{setLocation(data.place_id)}} className="pr-7">
+                 <div  onClick={()=>{setCustomHook_Lat_Lng_Fun(data.place_id);console.log(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-[150px]  cursor-pointer flex items-center justify-start ">
+                <div onClick={()=>{setCustomHook_Lat_Lng_Fun(data.place_id)}} className="pr-7">
                 <span class="material-symbols-outlined">
                   location_on
                 </span>
