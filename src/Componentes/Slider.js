@@ -21,29 +21,10 @@ const Slider=(props)=>{
         },
         mobile: {
           breakpoint: { max: 767, min: 200 },
-          items: props.data==="topOfferesForYou"?4:2,
+          items: 3,
           slidesToSlide: 1 // optional, default to 1.
         }
       };
-      const CustomNextArrow = ({ onClick, ...rest }) => (
-        <button
-          onClick={() => onClick()}
-          className="custom-arrow next"
-          {...rest}
-        >
-          Top
-        </button>
-      );
-    
-      const CustomPrevArrow = ({ onClick, ...rest }) => (
-        <button
-          onClick={() => onClick()}
-          className="custom-arrow prev"
-          {...rest}
-        >
-          Top
-        </button>
-      );
       return (
         <div className="w-[400px] h-[200px] -z-[2]">
           <Carousel
@@ -51,13 +32,11 @@ const Slider=(props)=>{
             autoPlay={true}
             swipeable={true}
             draggable={true}
-            showDots={props.data==="topOfferesForYou"?false:true}
+            showDots={true}
             infinite={false}
             partialVisible={false}
             dotListClass="custom-dot-list-style"
-           removeArrowOnDeviceType={props.data==="topOfferesForYou"?["tablet", "mobile"]:null} 
-           customNextArrow={<CustomNextArrow />}
-           customPrevArrow={<CustomPrevArrow />}
+            
           >
             {props.data==="offersOn"?offersOn.map((imageUrl, index) => {
               const {entityId}=imageUrl;

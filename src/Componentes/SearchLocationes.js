@@ -13,7 +13,7 @@ const SearchLocationes=(props)=>{
        data.length===0?<div   className="cursor-pointer w-full  bg-black"><h3>Not Available Location</h3></div>:data.map((data)=>{
             return(
             <div>  
-                 <div  onClick={()=>{setCustomHook_Lat_Lng_Fun(data.place_id);console.log(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-[150px]  cursor-pointer flex items-center justify-start ">
+                 <div  onClick={()=>{setCustomHook_Lat_Lng_Fun(data.place_id);dispatch(addPlaceName(data.description));dispatch(addLocation(false));}} className="w-full h-[150px]  cursor-pointer flex items-center justify-start ">
                 <div onClick={()=>{setCustomHook_Lat_Lng_Fun(data.place_id)}} className="pr-7">
                 <span class="material-symbols-outlined">
                   location_on
