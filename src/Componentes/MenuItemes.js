@@ -92,16 +92,16 @@ var button1= <button className="w-20 h-8 bg-green-500 border-green-800 text-whit
           <div >
              <div className="flex items-center justify-around">  {/*Data for card */}
               <div>
-              {isVisibleAdd && (<div className="absolute left-24  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-16 w-[40%] text-center "
-                                  style={{ backgroundColor: '#68d391' }}
+              {isVisibleAdd && (<div className="absolute left-24  transform -translate-x-1/2   shadow-lg animate-fade-in-down rounded-lg h-16 w-[50%] text-center bg-green-300"
+                                  
                                    >
-                                 <p className="text-black font-bold text-center text-2xl">Added successfully!</p>
+                                 <small className="text-orange-500 font-bold text-center text-[18px]">Added successfully!</small>
                               </div>
                             )}
-               {isVisibleRemove && (<div className="absolute left-24  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-16 w-[40%] text-center "
+               {isVisibleRemove && (<div className="absolute left-24  transform -translate-x-1/2 bg-white  shadow-lg animate-fade-in-down rounded-lg h-16 w-[50%] text-center "
                                   style={{ backgroundColor: 'red' }}
                                    >
-                                 <p className="text-black font-bold text-center text-2xl">Removed successfully!</p>
+                                 <small className="text-black font-bold text-center text-[18px]">Removed successfully!</small>
                               </div>
                             )}             
                   <h4 className="font-bold">{data?.card?.info?.name }</h4>

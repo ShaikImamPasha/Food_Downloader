@@ -42,14 +42,14 @@ navigator.geolocation.getCurrentPosition(async(data)=>{
            {
                isOpen===true?<div className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-in`}>
                    <div className="w-full">
-                   <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-1 ml-[370px] w-full">
+                   <span onClick={()=>dispatch(addLocation(false))} className="material-symbols-outlined cursor-pointer mt-1 ml-[310px] w-full">
                       close
                    </span>
                    <input className="w-full h-12 shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
                     </div>
         
             <div  className="h-[50px] w-full  cursor-pointer flex flex-wrap mt-10 mb-2  items-center">
-                  <span class="material-symbols-outlined ml-2">my_location</span>
+                  <span className="material-symbols-outlined ml-2">my_location</span>
                     <div  onClick={()=>{getlocation();}}>
                     <span  className="font-medium ml-3 cursor-pointer"  >Use Current Location</span>
                     <p className="text-gray-500 ml-3 cursor-pointer" > Using Gps</p>
@@ -62,14 +62,14 @@ navigator.geolocation.getCurrentPosition(async(data)=>{
                 </div>:isOpen===false?
                <div className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-out`}>
                 <div className="w-full">
-                <span onClick={()=>dispatch(addLocation(false))} class="material-symbols-outlined cursor-pointer mt-1 ml-[370px] w-full">
+                <span onClick={()=>dispatch(addLocation(false))} className="material-symbols-outlined cursor-pointer mt-1 ml-[310px] w-full">
                    close
                 </span>
                 <input className="w-full h-12 shadow-lg border border-solid" value={placeSearch} onChange={(e)=>{  setPlaceSearch(e.target.value);}} placeholder="Enter area,street name" type="text"></input>
                  </div>
      
          <div  className="h-[50px] w-full  cursor-pointer flex flex-wrap mt-10 mb-2  items-center">
-               <span class="material-symbols-outlined ml-2">my_location</span>
+               <span className="material-symbols-outlined ml-2">my_location</span>
                  <div >
                  <span  className="font-medium ml-3">Use Current Location</span>
                  <p className="text-gray-500 ml-3"> Using Gps</p>
@@ -85,7 +85,7 @@ navigator.geolocation.getCurrentPosition(async(data)=>{
             
             <div onClick={()=>dispatch(addLocation(true))} className="flex flex-wrap items-center justify-center">
            <img className=" h-[80px]" src={LOGO_URL}/>
-          <span  class="material-symbols-outlined cursor-pointer">add_location</span> <div>
+          <span  className="material-symbols-outlined cursor-pointer">add_location</span> <div>
            <p  className="font-semibold ml-2">Other</p>
            </div>
             </div>

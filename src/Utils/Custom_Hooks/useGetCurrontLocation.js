@@ -6,6 +6,6 @@ async function useGetCurrontLocation(lat,lan){
     //setcurontLocation(await data.json())
     dataa=await dataa.json();
     setData(dataa)
-     return await data;
+     return data;
     }
 export default useGetCurrontLocation;

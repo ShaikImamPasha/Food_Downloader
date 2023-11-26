@@ -4,6 +4,19 @@ import { CDN_IMAGE_URL } from "../Utils/constant.js";
 const FavourateCard=()=>{
   const FavourateItemesCard=useSelector((states)=>states.cart.itemes);
   console.log(FavourateItemesCard);
+  if(FavourateItemesCard.length===0){
+    return(
+      <>
+      <div className="flex flex-col flex-wrap justify-center items-center">
+      <img className="H-50 mt-2" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"></img>     
+        <h3>Your cart is empty</h3>
+        <small className="text-stone-700">You can go to home page to view more restaurants</small>
+       
+      </div>
+   
+      </>
+    )
+  }
     return(
       <>
       <div className="border-solid border-2 border-orange-300 rounded-lg shadow-orange-800">

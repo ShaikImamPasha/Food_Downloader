@@ -77,11 +77,42 @@ var arrr=[];
                    setHashMore(false);
                    return
             }
-            setTimeout(()=>{
+            setTimeout(async ()=>{
                 if(tempdata.length>0){
                          setTemdata(tempdata.concat(orgenaldata.slice(curentIndex,curentIndex+4)));
                          setCurentIndex(curentIndex+4);
                     //     console.log("ckc");
+                    var response = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/update?lat=${lat}&lng=${lng}`, {
+                      method: "POST", // *GET, POST, PUT, DELETE, etc.
+                      mode: "cors", // no-cors, *cors, same-origin
+                      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                      credentials: "same-origin", // include, *same-origin, omit
+                      headers: {
+                        "Content-Type": "application/json",
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                      },
+                      redirect: "follow", // manual, *follow, error
+                      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                      body: JSON.stringify({lat
+                        : 
+                        16.8226236,lng
+                        : 
+                        81.5925427,
+                        nextOffset:"COVCELQ4KIDw5pyo/6jCVDCnEzgC",
+                        page_type: "DESKTOP_WEB_LISTING",
+                         seoParams:{seoUrl: "https://www.swiggy.com/", pageType: "FOOD_HOMEPAGE", apiName: "FoodHomePage"},
+                          widgetOffset:{
+                            NewListingView_Topical_Fullbleed:"",
+                            Restaurant_Group_WebView_SEO_PB_Theme:"",
+                            collectionV5RestaurantListWidget_SimRestoRelevance_food_seo:"40",
+                            inlineFacetFilter:"",
+                            restaurantCountWidget:""
+                         }
+                        }
+                         ), // body data type must match "Content-Type" header
+                    });
+                    response=await response.json();
+                    console.log("moredata",response)
                 }
             },1000)
     
