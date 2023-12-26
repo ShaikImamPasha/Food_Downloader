@@ -4,8 +4,7 @@ import locationes from "./locationes";
 const appStore=configureStore({
     reducer:{
         cart: cardReducer,
-        loc: locationes,
-        Commente:Commentes
+        loc: locationes
     }
 });
 export default appStore;
