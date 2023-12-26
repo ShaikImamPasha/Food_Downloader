@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 const Card=(props)=>{     //props is js object
   //  console.log(props)
     var {name,locality,areaName,costForTwo,cloudinaryImageId, cuisines,avgRating,id}=props?.data.info;
-
      return(
         <Link to={"/restaurent/"+id}>
         <div className=" w-[150px] h-[310px] break-words bg-white-100 hover:bg-gray-200 rounded-md">

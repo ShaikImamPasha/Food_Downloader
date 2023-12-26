@@ -5,7 +5,7 @@ import MenuItemes from "./MenuItemes.js";
 import CardState from "../Utils/Context/CardState.js";
 const MenuRestarent=(props)=>{
   
-    const {title,arrow,setArryFunctions}=props;
+    const {title,arrow,setArryFunctions,setArrayClose}=props;
     const {itemCards}=props?.data?.card?.card;
     const [presntData,setPresntData]=useState(itemCards?.slice(0,5));
     const [currentIndex,setCurrentIndex]=useState(5);
@@ -32,7 +32,7 @@ const MenuRestarent=(props)=>{
            <div className="flex justify-center items-center mt-1" >
                   <h3 className="font-bold">{title}({props?.data?.card?.card?.itemCards?.length})</h3>
                     {
-                      <span onClick={setArryFunctions} className="material-symbols-outlined arrow">
+                      <span onClick={arrow?setArrayClose:setArryFunctions} className="material-symbols-outlined arrow">
                                     arrow_circle_down
                                    </span>
                       }
@@ -44,7 +44,7 @@ const MenuRestarent=(props)=>{
            endMessage={<p className="text-center">end of data</p>}
            >
               <div className="">{itemCards &&  presntData.map((data,index)=>{
-               return <MenuItemes data={data} key={index}></MenuItemes>
+               return <MenuItemes data={data?.card?.info} key={index}></MenuItemes>
                
         }
         

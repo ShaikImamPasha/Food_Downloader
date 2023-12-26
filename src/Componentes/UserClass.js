@@ -8,7 +8,7 @@ class UserClass extends React.Component{
     //     count2:1
     //   }\
    
-      console.log(this.props.name+"child constructor");
+
      this.state={
         userData:{
             name:"pasha",

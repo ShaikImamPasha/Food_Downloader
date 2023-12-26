@@ -1,10 +1,28 @@
 import { useSelector } from "react-redux";
 import MenuItemes from "./MenuItemes";
 import { CDN_IMAGE_URL } from "../Utils/constant.js";
+import { useState } from "react";
+import { useEffect } from "react";
 const FavourateCard=()=>{
   const FavourateItemesCard=useSelector((states)=>states.cart.itemes);
-  console.log(FavourateItemesCard);
-  if(FavourateItemesCard.length===0){
+  const [totelPrice,setTotelPrice]=useState(0);
+  useEffect(()=>{
+      fun();
+  },[FavourateItemesCard])
+  function fun(){
+    var a=FavourateItemesCard.reduce((i,data)=>(data.addSymbole && (data.price*data.count)/100)+i,0)
+    setTotelPrice(a);
+  }
+  function calClateFavCard(){
+    var count=0;
+    FavourateItemesCard.map((data)=>{
+         if(data.addSymbole){
+          count++;
+         }
+    })
+    return count===0?true:false;
+  }
+  if(calClateFavCard()){
     return(
       <>
       <div className="flex flex-col flex-wrap justify-center items-center">
@@ -19,30 +37,39 @@ const FavourateCard=()=>{
   }
     return(
       <>
-      <div className="border-solid border-2 border-orange-300 rounded-lg shadow-orange-800">
+      <div className="border-solid border-2  rounded-lg shadow-orange-800 flex flex-wrap justify-center item-center ml-2">
+        <div>
       {
         FavourateItemesCard.map((data)=>{
-          return  data.addSymbole===true?<div className="">
-          <div className="">
-             <div className="flex items-center justify-around">
-              <div>
-              <h4 className="font-bold">{ data?.name}</h4>
-               <p>₹{data?.price/100}</p>
-               <p>{data?.rating}</p>
-              </div>
-              <img  loading="lazy" alt={"loading"}className="rounded-3xl w-[50px] h-[50px]" src={CDN_IMAGE_URL+data?.imageId}></img>
-            </div>
-          
-       </div>
-           
-            </div>:null
-        })
-        
+          return data.addSymbole && <MenuItemes data={data} Fav={true}/>
+                })
       }
       </div>
-    <div>
-       
-    </div>
+      </div>
+      <h1 className="mt-3 ml-2 font-medium">Bill Deatils</h1>
+      <div className="ml-2 text-gray-500">
+              
+                <span>Item Totel</span><span className="ml-[228px]">₹{totelPrice}</span>
+               <div>
+               <span>Delivery Tip</span><span className="ml-[215px]">₹{20}</span>
+               </div>
+               <div>
+               <span>Platform Fee</span><span className="ml-[210px]">₹{<del>10</del>}<span className="ml-1">{4}</span></span>
+               </div>
+               <div>
+               <span>GST and Restaurant Charges</span><span className="ml-[97px]">₹{50}</span>
+               </div>
+              
+      </div>
+      <div className="flex items-center justify-around mt-3">
+                  <div className="w-96 h-[1.5px] bg-black">
+  
+                  </div>
+              </div>
+      <div className="ml-2 mt-2 font-medium">
+        <span>  To Pay</span>
+            <span className="ml-[250px]">{((totelPrice))+20+4+50}</span>
+      </div>
     </>
     )
 }

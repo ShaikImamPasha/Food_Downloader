@@ -8,7 +8,7 @@ const useGetPlace_Id=()=>{
         fetchdata();
      },[placeSearch])
      async function fetchdata(){
-         var data=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${placeSearch}`);
+         var data = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/misc/place-autocomplete?input=${placeSearch}`)
          data=await data.json();
          dispatch(addSearchLocatines(data.data))
      }

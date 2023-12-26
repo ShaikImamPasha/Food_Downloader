@@ -38,17 +38,21 @@ const Body=(props)=>{
 
 var arrr=[];
   const fetchdata=async ()=>{
-    var data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
-    if(data1.status===404 && data1.ok===false){
-         data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
+    
+      
+
+
+    var data1 = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
+
+    if(true){
+      
+         data1 = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
         console.log("desktop mode")
         var json_data=await data1.json(); 
-        console.log(json_data)
         dispatch(TopOfferesForYou(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
    //      dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
          dispatch(addWhatOnYourMind(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info))
-        
-          
+               
            json_data=json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             json_data && setTemdata(json_data.slice(0,8));
            setOrgenaldata(json_data);
@@ -56,7 +60,6 @@ var arrr=[];
     }else{
         console.log("mobile mode new")
     var json_data=await data1.json();
-    console.log(json_data) 
      dispatch(TopOfferesForYou(json_data?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants))
       dispatch(addOffersOn(json_data?.data?.success?.cards[2]?.gridWidget?.gridElements?.infoWithStyle?.info))
       dispatch(addWhatOnYourMind(json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.info))
@@ -69,8 +72,9 @@ var arrr=[];
     }
         }
     
-      
-     
+  
+        
+  
        
         const loadNextData=()=>{
             if(orgenaldata.length<=tempdata.length){
@@ -82,7 +86,7 @@ var arrr=[];
                          setTemdata(tempdata.concat(orgenaldata.slice(curentIndex,curentIndex+4)));
                          setCurentIndex(curentIndex+4);
                     //     console.log("ckc");
-                    var response = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/update?lat=${lat}&lng=${lng}`, {
+                    var response = await fetch(`https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/update`, {
                       method: "POST", // *GET, POST, PUT, DELETE, etc.
                       mode: "cors", // no-cors, *cors, same-origin
                       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -93,22 +97,29 @@ var arrr=[];
                       },
                       redirect: "follow", // manual, *follow, error
                       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                      body: JSON.stringify({lat
-                        : 
-                        16.8226236,lng
-                        : 
-                        81.5925427,
-                        nextOffset:"COVCELQ4KIDw5pyo/6jCVDCnEzgC",
-                        page_type: "DESKTOP_WEB_LISTING",
-                         seoParams:{seoUrl: "https://www.swiggy.com/", pageType: "FOOD_HOMEPAGE", apiName: "FoodHomePage"},
-                          widgetOffset:{
-                            NewListingView_Topical_Fullbleed:"",
-                            Restaurant_Group_WebView_SEO_PB_Theme:"",
-                            collectionV5RestaurantListWidget_SimRestoRelevance_food_seo:"40",
-                            inlineFacetFilter:"",
-                            restaurantCountWidget:""
-                         }
-                        }
+                      body: JSON.stringify(
+                        {
+                          lat: 17.385044,
+                          lng: 78.486671,
+                          nextOffset: "COVCELQ4KICAxfKQ2Om3YjCnEzgB",
+                          widgetOffset: {
+                              NewListingView_Topical_Fullbleed: "",
+                              NewListingView_category_bar_chicletranking_TwoRows: "",
+                              NewListingView_category_bar_chicletranking_TwoRows_Rendition: "",
+                              Restaurant_Group_WebView_SEO_PB_Theme: "",
+                              collectionV5RestaurantListWidget_SimRestoRelevance_food_seo: "10",
+                              inlineFacetFilter: "",
+                              restaurantCountWidget: ""
+                          },
+                          filters: {},
+                          seoParams: {
+                              seoUrl: "https://www.swiggy.com/",
+                              pageType: "FOOD_HOMEPAGE",
+                              apiName: "FoodHomePage"
+                          },
+                          page_type: "DESKTOP_WEB_LISTING",
+                          _csrf: "Y8Fmtj8Tk9pT-K8F7vfgEZmUXpdtk0Rbg9p4AuqQ"
+                      }
                          ), // body data type must match "Content-Type" header
                     });
                     response=await response.json();

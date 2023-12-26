@@ -22,7 +22,7 @@ export const Header=()=>{
     const [openSearchLocation,setOpenSearchLocatoon]=useState(false);
    const restaurants=useSelector((state)=>state.cart.resturentData);
 
- // console.log(locationName)
+  
    
    async function getlocation(){
 navigator.geolocation.getCurrentPosition(async(data)=>{
@@ -37,7 +37,7 @@ navigator.geolocation.getCurrentPosition(async(data)=>{
     return(
      <>
           <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
-          {restaurants.length===0?<div className="bg-white"> <div className="h-[4px] bg-orange-500 fixed top-0 left-0 w-0 animate-loading-line "></div></div>:null}
+          {restaurants.length===0?<div className="bg-white"> <div className="h-[4px]  fixed top-0 left-0 w-0 animate-loading-line "></div></div>:null}
            <div>
            {
                isOpen===true?<div className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-in`}>

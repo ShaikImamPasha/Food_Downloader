@@ -12,7 +12,6 @@ const customIcon = L.icon({
 const MapCpt=()=>{
     const [mapdata,setMapData]=useState([]);
     const resturentData=useSelector((state)=>state.cart.resturentData)
-    console.log(resturentData)
     const lat=useSelector((state)=>state.loc.lat);
     const lng=useSelector((state)=>state.loc.lng);
   useEffect(()=>{
@@ -22,12 +21,11 @@ async  function fetchMapData (){
   if(window.screen.height>768 ){
     const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
     var json_data=await data1.json(); 
- console.log("mobile mode")
 }
 else{
     const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
     var json_data=await data1.json(); 
-    console.log("desktop mode")
+
 }
    json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     const allplacesurls=json_data?.map((data)=>{
@@ -77,7 +75,7 @@ console.error('Fetch operation error:', error);
          mapdata.map((location, index) => (
           
               <Marker key={index} position={[location.data[0].geometry.location.lat,location.data[0].geometry.location.lng]} icon={customIcon}>
-               {console.log(mapdata)} <Popup><div className='cursor-pointer' ><Link to={"/restaurent/"+location.data[0].id}>click here for go to {location.data[0].resturentName} resturent Menu</Link></div></Popup>
+                <Popup><div className='cursor-pointer' ><Link to={"/restaurent/"+location.data[0].id}>click here for go to {location.data[0].resturentName} resturent Menu</Link></div></Popup>
               </Marker>
             ))
             }
