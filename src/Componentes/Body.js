@@ -86,7 +86,7 @@ var arrr=[];
                          setTemdata(tempdata.concat(orgenaldata.slice(curentIndex,curentIndex+4)));
                          setCurentIndex(curentIndex+4);
                     //     console.log("ckc");
-                    var response = await fetch(`https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/update`, {
+                    var response = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/update`, {
                       method: "POST", // *GET, POST, PUT, DELETE, etc.
                       mode: "cors", // no-cors, *cors, same-origin
                       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
