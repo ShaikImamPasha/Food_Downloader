@@ -16,9 +16,10 @@ const Restaurent=()=>{
     function setArrayfunction(index){
     setArrayIndex(index);
     }
+    console.log("resinfo",resInfo);
     if(resInfo!==null){
-        var {name,avgRating,areaName,locality}=resInfo?.data?.cards[0]?.card?.card?.info;
-        var menuitemes=resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards || resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR.cards;
+        var {name,avgRating,areaName,locality}=resInfo?.data?.cards[0]?.card?.card?.info || resInfo?.data?.cards[2]?.card?.card?.info;
+        var menuitemes=resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards || resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR.cards || resInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
         //console.log(menuitemes);
     }
 

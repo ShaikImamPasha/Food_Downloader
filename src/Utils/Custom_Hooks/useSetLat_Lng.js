@@ -8,7 +8,7 @@ export default function useSetLat_Lng(){
      fun()
   },[data])
   async function fun(){
-    const url=`https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/misc/address-recommend?place_id=${data}`
+    const url=`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${data}`
     if(data!==" "){
      var data1=await fetch(url)
       data1=await data1.json()

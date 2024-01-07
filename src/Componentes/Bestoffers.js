@@ -15,7 +15,7 @@ const Bestoffers=()=>{
        fetchdata();
    },[])
     const fetchdata=async()=>{
-        var fetcbestoffersdata=await fetch(`http://localhost:3001/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`); 
+        var fetcbestoffersdata=await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`); 
            var data=await fetcbestoffersdata.json()
            setBestOfferData(data);
           

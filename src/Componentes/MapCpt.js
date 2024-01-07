@@ -18,19 +18,23 @@ const MapCpt=()=>{
     fetchMapData();
   },[lat,lng,resturentData])
 async  function fetchMapData (){
-  if(window.screen.height>768 ){
-    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
-    var json_data=await data1.json(); 
-}
-else{
-    const data1 = await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-    var json_data=await data1.json(); 
+        
+  var json_data = await fetch(`https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
 
-}
-   json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  if(json_data.ok===false && json_data.status===404){
+    json_data = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
+     json_data=await json_data.json();      
+    json_data=json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  }else{
+      console.log("mobile mode new")
+      json_data=await json_data.json();
+      json_data=json_data?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants ||json_data?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.restaurants;
+  }
+
     const allplacesurls=json_data?.map((data)=>{
-        return fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
+        return fetch(`https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/misc/place-autocomplete?input=${data.info.areaName}`)  
     })
+   
     Promise.all(allplacesurls)
      .then(responses => {
     const jsonPromises = responses.map(response => response.json());
@@ -39,7 +43,7 @@ else{
      .then(dataArray => {
 // console.log(dataArray)
      const allplacePlaceIdsurls=dataArray?.map((data)=>{
-   return fetch(`https://corsproxy.io/?https://www.swiggy.com/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`) 
+   return fetch(`https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`) 
      })
 
     Promise.all(allplacePlaceIdsurls)

@@ -40,14 +40,12 @@ var arrr=[];
   const fetchdata=async ()=>{
     
       
+    var data1 = await fetch(`https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`)
 
-
-    var data1 = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-
-    if(true){
+    if(data1.ok===false && data1.status===404){
       
          data1 = await fetch(`https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`)
-        console.log("desktop mode")
+   
         var json_data=await data1.json(); 
         dispatch(TopOfferesForYou(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json_data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
    //      dispatch(addOffersOn(json_data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info))
