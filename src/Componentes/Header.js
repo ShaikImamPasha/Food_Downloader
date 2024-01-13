@@ -15,6 +15,7 @@ import { Login } from "./Login";
 export const Header = () => {
   const dispatch = useDispatch();
   const states = useOnlineStates();
+  const isUserLoginData = useSelector((state) => state.user.userData);
   const searchlocatines = useSelector((state) => state.loc.searchlocatines);
   const [placeSearch, setPlaceSearch] = useGetPlace_Id();
   const [curtntLocation, setcurontLocation] = useState("");
@@ -24,6 +25,8 @@ export const Header = () => {
   const [openSearchLocation, setOpenSearchLocatoon] = useState(false);
   const restaurants = useSelector((state) => state.cart.resturentData);
   const LoginModel = useSelector((state) => state.user.LoginModel);
+  var lruCatch = JSON.parse(localStorage.getItem("lruCatch"));
+  var lruCatchData = JSON.parse(localStorage.getItem("lruCatch"));
   async function getlocation() {
     navigator.geolocation.getCurrentPosition(
       async (data) => {
@@ -31,7 +34,6 @@ export const Header = () => {
           `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${data.coords.latitude}&longitude=${data.coords.longitude}`
         );
         dataa = await dataa.json();
-        console.log(dataa.city);
       },
       () => {}
     );
@@ -84,7 +86,20 @@ export const Header = () => {
               <hr className="border border-solid border-black"></hr>
               <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
                 {searchlocatines ? (
-                  <SearchLocationes className="" data={searchlocatines} />
+                  <SearchLocationes
+                    className=""
+                    data={searchlocatines}
+                    lruOpen={false}
+                  />
+                ) : lruCatchData !== null ? (
+                  <p>
+                    {
+                      <SearchLocationes
+                        lruOpen={true}
+                        data={lruCatchData}
+                      ></SearchLocationes>
+                    }
+                  </p>
                 ) : null}
               </div>
             </div>
@@ -128,6 +143,14 @@ export const Header = () => {
 
           <div className="flex flex-wrap  items-center w-full  gap-32">
             <img className=" h-[80px]" src={LOGO_URL} />
+            {LoginModel === true && isUserLoginData === null && (
+              <div className="fixed left-32 top-32">
+                <div>
+                  {" "}
+                  <Login />
+                </div>
+              </div>
+            )}
             {LoginModel === false && (
               <div>
                 <button class="Btn">

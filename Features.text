@@ -1,0 +1,13 @@
+                      Features
+//map for show the restaurantes based on the search location.
+//commentes for individual restaurantes.(donw with recursion)
+//search loaction or getCurrontLocation and based on that show restaurantes.
+//addCard(addMultiple itemes to card).
+//search restaurantes.
+//Login.
+//debuncing in search locaton.
+//Done catch using HashMap in location search.
+//LRU using array in search location(upto 3).
+peanding:- 
+//payment  and map
+

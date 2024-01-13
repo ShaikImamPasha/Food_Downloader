@@ -1,5 +1,5 @@
 import MiniCmpt from "./MiniCmpt";
-const ComponentFun = ({ data, replay, replayAva }) => {
+const ComponentFun = ({ data, replay, replayAva, resid }) => {
   return (
     <div>
       {data &&
@@ -7,6 +7,7 @@ const ComponentFun = ({ data, replay, replayAva }) => {
           <div key={index}>
             {data && data.name && (
               <MiniCmpt
+                resid={resid}
                 data={data}
                 indexKey={index}
                 replay={replay}

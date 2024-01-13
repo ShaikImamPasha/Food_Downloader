@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { ComponentFun } from "./ComponentFun";
+import { addCommentModel } from "../../Utils/Redux/userSlice";
+import { useSelector } from "react-redux";
 import dotenv from "dotenv";
 dotenv.config();
 import MiniCmpt from "./MiniCmpt";
-
-const CommentApp = () => {
+import { useDispatch } from "react-redux";
+import { addLoginMode } from "../../Utils/Redux/userSlice";
+const CommentApp = ({ resid }) => {
   const [commentsData, setCommentsData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const isUserLoginData = useSelector((state) => state.user.userData);
   const socket = io(process.env.Back_End_Socket_Api_Url);
 
   useEffect(() => {
-    socket.emit("requestInitialData", { restaurantId: 32 });
+    socket.emit("requestInitialData", { restaurantId: resid });
 
     socket.on("initialData", (initialData) => {
       setCommentsData(initialData);
@@ -30,13 +35,17 @@ const CommentApp = () => {
     };
   }, []);
   const pushComment = () => {
-    socket.emit("addComment", {
-      restaurantId: 32,
-      newComment: {
-        name: "imam",
-        message: searchValue,
-      },
-    });
+    if (isUserLoginData === null) {
+      dispatch(addLoginMode());
+    } else {
+      socket.emit("addComment", {
+        restaurantId: resid,
+        newComment: {
+          name: isUserLoginData.name,
+          message: searchValue,
+        },
+      });
+    }
 
     setSearchValue("");
   };
@@ -57,12 +66,31 @@ const CommentApp = () => {
         >
           Add Comment
         </button>
+        <button
+          className=" text-gray-500 ml-3 hover:text-red-700 transition duration-300 "
+          onClick={() => dispatch(addCommentModel())}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-8 w-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
 
       {commentsData && commentsData.length === 0 ? (
         <p className="w-[100px] h-[100px] border-2 border-solid"></p>
       ) : (
-        <ComponentFun data={commentsData.comments} />
+        <ComponentFun data={commentsData.comments} resid={resid} />
       )}
     </div>
   );

@@ -7,7 +7,6 @@ import { json } from "react-router-dom";
 dotenv.config();
 const Login = () => {
   const isUserLoginData = useSelector((state) => state.user.userData);
-  console.log("hi", isUserLoginData);
   var [loginAccountDetailes, setLoginAccount] = useState({
     gmail: "",
     password: "",
@@ -34,7 +33,6 @@ const Login = () => {
         }),
       }).then(async (data) => {
         var t = await data.json();
-        console.log(t);
       });
     }
   };
@@ -55,7 +53,7 @@ const Login = () => {
       }).then(async (data) => {
         if (data.ok === true) {
           data = await data.json();
-          console.log(data);
+
           dispatch(addUserData(data.user));
         } else {
           console.log("enter correct data");

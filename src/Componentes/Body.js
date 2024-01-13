@@ -23,7 +23,6 @@ import Test from "./Test.js";
 const Body = (props) => {
   //state vairable  -super powerful vairable
   const resdata = useState([]);
-  const isUserLoginData = useSelector((state) => state.user.userData);
   const [mapdata, setMapData] = useState([]);
   const [tempdata, setTemdata] = resdata;
   const [orgenaldata, setOrgenaldata] = useState([]);
@@ -43,17 +42,16 @@ const Body = (props) => {
     fetchdata();
   }, [lat, lng]); //it's worked after all componentes are renderd.
 
-  var arrr = [];
   const fetchdata = async () => {
     var data1 = await fetch(
       `https://rich-neckerchief-jay.cyclic.app/api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`
     );
-    console.log(data1);
+
     if (data1.ok === false && data1.status === 404) {
       data1 = await fetch(
         `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
       );
-      console.log("des", data1);
+
       var json_data = await data1.json();
       dispatch(
         TopOfferesForYou(
@@ -82,7 +80,6 @@ const Body = (props) => {
       setOrgenaldata(json_data);
       dispatch(addResturentData(json_data));
     } else {
-      console.log("mobile mode new");
       var json_data = await data1.json();
       dispatch(
         TopOfferesForYou(
@@ -167,7 +164,6 @@ const Body = (props) => {
           }
         );
         response = await response.json();
-        console.log("moredata", response);
       }
     }, 1000);
   };
@@ -181,22 +177,8 @@ const Body = (props) => {
         {<Shimmer />}
       </div>
     ) : (
-      <div
-        className={`mb-11 z-30 ${
-          LoginModel === true
-            ? "overflow-y-auto overflow-x-hidden fixed top-32  bg-gray-100 right-0 left-0 z-50 "
-            : ""
-        }`}
-      >
+      <div className={`mb-11 z-30 `}>
         <div className="">
-          {LoginModel === true && isUserLoginData === null && (
-            <div className="flex justify-center flex-col items-center">
-              <div>
-                {" "}
-                <Login />
-              </div>
-            </div>
-          )}
           {topOfferesForYou === undefined ? null : topOfferesForYou.length !==
             0 ? (
             <div className="flex items-center flex-wrap flex-col mb-1">
