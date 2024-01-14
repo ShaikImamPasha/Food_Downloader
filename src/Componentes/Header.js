@@ -40,7 +40,7 @@ export const Header = () => {
   }
   return (
     <>
-      <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0  z-40 bg-white">
+      <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0 z-40  bg-white">
         {restaurants.length === 0 ? (
           <div className="bg-white">
             {" "}
@@ -50,7 +50,7 @@ export const Header = () => {
         <div>
           {isOpen === true ? (
             <div
-              className={`bg-white h-[650px] fixed  left-0 top-0 flex-wrap  z-20 card-container  animate-slide-in`}
+              className={`bg-white h-[650px] w-full fixed  left-0 top-0 flex-wrap   card-container  animate-slide-in`}
             >
               <div className="w-full">
                 <span
@@ -70,7 +70,7 @@ export const Header = () => {
                 ></input>
               </div>
 
-              <div className="h-[50px] w-full  cursor-pointer flex flex-wrap  justify-between items-center">
+              <div className="h-[50px] w-full  cursor-pointer flex flex-wrap  mt-2 gap-3">
                 <span className="material-symbols-outlined ">my_location</span>
                 <div
                   onClick={() => {
@@ -83,8 +83,8 @@ export const Header = () => {
                   <p className="text-gray-500  cursor-pointer"> Using Gps</p>
                 </div>
               </div>
-              <hr className="border border-solid border-black"></hr>
-              <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
+              <hr className="border border-solid border-black mt-2"></hr>
+              <div className="bg-white  h-[400px] w-full overflow-auto ">
                 {searchlocatines ? (
                   <SearchLocationes
                     className=""
@@ -133,7 +133,7 @@ export const Header = () => {
                 </div>
               </div>
               <hr className=" border border-solid border-black"></hr>
-              <div className="bg-white  h-[400px] w-[500px] overflow-auto ">
+              <div className="bg-white  h-[400px] w-full overflow-auto ">
                 {searchlocatines ? (
                   <SearchLocationes className="" data={searchlocatines} />
                 ) : null}
@@ -144,7 +144,7 @@ export const Header = () => {
           <div className="flex flex-wrap  items-center w-full  gap-32">
             <img className=" h-[80px]" src={LOGO_URL} />
             {LoginModel === true && isUserLoginData === null && (
-              <div className="fixed left-32 top-32">
+              <div className="fixed left-32 top-32 z-1">
                 <div>
                   {" "}
                   <Login />

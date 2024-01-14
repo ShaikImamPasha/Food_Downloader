@@ -16,29 +16,38 @@ const SearchLocationes = (props) => {
     <>
       {lruOpen === true ? (
         <>
-          <p>recanrly</p>
-          {data.map((data) => {
-            return (
-              <p
-                className="cursor-pointer"
-                onClick={() => {
-                  setCustomHook_Lat_Lng_Fun(data.data[0].place_id);
-                  dispatch(addPlaceName(data.data[0].formatted_address));
-                  setTimeout(() => {
-                    dispatch(addLocation(false));
-                  }, 50);
-                }}
-              >
-                <p
-                  onClick={() => {
-                    setCustomHook_Lat_Lng_Fun(data.data[0].place_id);
-                  }}
-                >
-                  {data.data[0].formatted_address}
-                </p>
-              </p>
-            );
-          })}
+          <div className="flex flex-col  gap-2">
+            <p className="text-gray-600 ml-8 mt-2">RECENT SEARCHES</p>
+            {data.map((data) => {
+              return (
+                <>
+                  <p
+                    className="cursor-pointer "
+                    onClick={() => {
+                      setCustomHook_Lat_Lng_Fun(data.data[0].place_id);
+                      dispatch(addPlaceName(data.data[0].formatted_address));
+                      setTimeout(() => {
+                        dispatch(addLocation(false));
+                      }, 50);
+                    }}
+                  >
+                    <div className="flex justify-start gap-2 mb-3">
+                      <span class="material-symbols-outlined">location_on</span>
+                      <p
+                        className=""
+                        onClick={() => {
+                          setCustomHook_Lat_Lng_Fun(data.data[0].place_id);
+                        }}
+                      >
+                        {data.data[0].formatted_address}
+                      </p>
+                    </div>
+                    <div className="h-0.5 border border-gray-400 w-full mb-5"></div>
+                  </p>
+                </>
+              );
+            })}
+          </div>
         </>
       ) : data.length === 0 ? (
         <div className="cursor-pointer w-full ">
@@ -54,13 +63,13 @@ const SearchLocationes = (props) => {
                   dispatch(addPlaceName(data.description));
                   dispatch(addLocation(false));
                 }}
-                className="w-full h-[150px]  cursor-pointer flex items-center justify-start "
+                className="w-full h-full gap-3  cursor-pointer flex items-center justify-start mb-4 mt-2"
               >
                 <div
                   onClick={() => {
                     setCustomHook_Lat_Lng_Fun(data.place_id);
                   }}
-                  className="pr-7"
+                  className=""
                 >
                   <span class="material-symbols-outlined">location_on</span>
                 </div>
@@ -71,7 +80,7 @@ const SearchLocationes = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="ml-11 border border-gray-600 w-full"></div>
+              <div className="border border-gray-600 w-full"></div>
             </div>
           );
         })
