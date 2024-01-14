@@ -19,31 +19,18 @@ const MapCpt = () => {
   }, [lat, lng, resturentData]);
   async function fetchMapData() {
     var json_data = await fetch(
-      `https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`
+      `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
     );
-
-    if (json_data.ok === false && json_data.status === 404) {
-      json_data = await fetch(
-        `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
-      );
-      json_data = await json_data.json();
-      json_data =
-        json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants ||
-        json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
-    } else {
-      json_data = await json_data.json();
-      json_data =
-        json_data?.data?.success?.cards[4]?.gridWidget?.gridElements
-          ?.infoWithStyle?.restaurants ||
-        json_data?.data?.success?.cards[3]?.gridWidget?.gridElements
-          ?.infoWithStyle?.restaurants;
-    }
+    json_data = await json_data.json();
+    json_data =
+      json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants ||
+      json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
 
     const allplacesurls = json_data?.map((data) => {
       return fetch(
-        `https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/misc/place-autocomplete?input=${data.info.areaName}`
+        `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/misc/place-autocomplete?input=${data.info.areaName}`
       );
     });
 
@@ -56,7 +43,7 @@ const MapCpt = () => {
         // console.log(dataArray)
         const allplacePlaceIdsurls = dataArray?.map((data) => {
           return fetch(
-            `https://smoggy-flannel-shirt-elk.cyclic.app/api/proxy/swiggy/mapi/misc/address-recommend?place_id=${data.data[0].place_id}`
+            `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${data.data[0].place_id}`
           );
         });
 
