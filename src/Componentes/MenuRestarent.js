@@ -33,14 +33,21 @@ const MenuRestarent = (props) => {
             <h3 className="font-bold">
               {title}({props?.data?.card?.card?.itemCards?.length})
             </h3>
-            {
+            {arrow ? (
               <span
                 onClick={arrow ? setArrayClose : setArryFunctions}
-                className="material-symbols-outlined arrow"
+                class="material-symbols-outlined"
               >
-                arrow_circle_down
+                keyboard_arrow_up
               </span>
-            }
+            ) : (
+              <span
+                onClick={arrow ? setArrayClose : setArryFunctions}
+                class="material-symbols-outlined"
+              >
+                keyboard_arrow_down
+              </span>
+            )}
           </div>
         )}
         {arrow && (
@@ -65,8 +72,8 @@ const MenuRestarent = (props) => {
           </InfiniteScroll>
         )}
         {itemCards && (
-          <div className="flex items-center justify-around mt-7">
-            <div className="w-96 h-[4px] bg-gray-400 "></div>
+          <div className="flex items-center justify-around mt-4">
+            <div className="w-96 h-[12px] bg-gray-200 "></div>
           </div>
         )}
       </div>

@@ -10,6 +10,7 @@ const headerSlice = createSlice({
     topOrginalItem: [],
     catchData: new Map(),
     lruCatch: [],
+    newDataLoader: false,
   },
   reducers: {
     addItem: function (state, action) {
@@ -18,8 +19,12 @@ const headerSlice = createSlice({
     addCatchData: function (state, action) {
       state.catchData.set(action.payload.placeSearch, action.payload.data);
     },
+    addNewDataLoader: function (state, action) {
+      return { ...state, newDataLoader: action.payload };
+    },
   },
 });
 
-export const { addItem, Ti, TiModifyF, addCatchData } = headerSlice.actions;
+export const { addItem, Ti, TiModifyF, addCatchData, addNewDataLoader } =
+  headerSlice.actions;
 export default headerSlice.reducer;

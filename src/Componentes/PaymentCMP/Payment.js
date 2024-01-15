@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dotenv from "dotenv";
 import "dotenv/config";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addLoginMode } from "../../Utils/Redux/userSlice";
 dotenv.config();
 
-const Payment = () => {
+const Payment = ({ setPrice }) => {
+  const dispatch = useDispatch();
   const navigator = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const userDetailes = useSelector((state) => state.user.userData);
+  console.log("data", userDetailes);
   async function fun() {
     setLoading(true);
 
@@ -35,7 +38,7 @@ const Payment = () => {
 
     const options = {
       key: process.env.PaymentKey,
-      amount: 1 * 100,
+      amount: (userDetailes.price + 20 + 4 + 50) * 100,
       currency: "INR",
       name: "booking",
       email: "a@gmail.com",
@@ -44,8 +47,8 @@ const Payment = () => {
         navigator("/order");
       },
       prefill: {
-        name: "pasha",
-        email: "a@gmail.com",
+        name: userDetailes.name,
+        email: userDetailes.gmail,
       },
     };
 
@@ -57,7 +60,9 @@ const Payment = () => {
   return (
     <div className="">
       <button
-        onClick={() => fun()}
+        onClick={() =>
+          userDetailes === null ? dispatch(addLoginMode()) : (setPrice(), fun())
+        }
         className={`${
           loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500"
         } hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all`}

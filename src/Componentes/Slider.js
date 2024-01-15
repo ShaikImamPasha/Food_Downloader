@@ -44,7 +44,7 @@ const Slider = (props) => {
                 <Link to={"/bestoffers/" + imageUrl?.entityId}>
                   <div className="flex ml-2" key={index}>
                     <img
-                      className="w-[150px] h-full"
+                      className="w-[150px] h-[100px]"
                       src={
                         "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/" +
                         imageUrl.imageId
@@ -62,7 +62,7 @@ const Slider = (props) => {
                 <Link to={"/bestoffers/" + imageUrl?.entityId}>
                   <div className="flex ml-2" key={index}>
                     <img
-                      className="w-[150px] h-full"
+                      className="w-[150px] h-[200px]"
                       src={
                         "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/" +
                         imageUrl.imageId

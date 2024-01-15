@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useState, CSSProperties } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addNewDataLoader } from "../Utils/Redux/headerSlice.js";
 import { Login } from "./Login.js";
 import locationes, {
   addWhatOnYourMind,
@@ -36,11 +37,20 @@ const Body = (props) => {
   const offersOn = useSelector((state) => state.loc.offersOn);
   const LoginModel = useSelector((state) => state.user.LoginModel);
   const mapData = useSelector((state) => state.loc.mapData);
+  const newDataLoader = useSelector((state) => state.header.newDataLoader);
   //  console.log(mapData)
   const dispatch = useDispatch();
   useEffect(() => {
     fetchdata();
-  }, [lat, lng]); //it's worked after all componentes are renderd.
+    if (newDataLoader === true) {
+      var teamp = setTimeout(() => {
+        dispatch(addNewDataLoader(false));
+      }, [2000]);
+    }
+    return () => {
+      clearTimeout(teamp);
+    };
+  }, [lat, lng, newDataLoader]); //it's worked after all componentes are renderd.
 
   const fetchdata = async () => {
     var data1 = await fetch(
@@ -167,6 +177,10 @@ const Body = (props) => {
       }
     }, 1000);
   };
+  console.log("gasgad", newDataLoader);
+  if (newDataLoader === true) {
+    return <Shimmer />;
+  }
   return (
     //CONDITIONAL RANDARING
     tempdata.length === 0 ? (

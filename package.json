@@ -20,6 +20,8 @@
   "homepage": "https://github.com/ShaikImamPasha/NamasteDev-Recat-Js-Web-Series#readme",
   "devDependencies": {
     "@babel/core": "^7.23.7",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@babel/preset-react": "^7.23.3",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
@@ -54,7 +56,7 @@
     "socket.io-client": "^4.7.3",
     "tw-elements": "^1.0.0"
   },
-  "browserlist": [
+  "browserslist": [
     "Last 2 Chrome version",
     "Last 2 Firefox version"
   ]

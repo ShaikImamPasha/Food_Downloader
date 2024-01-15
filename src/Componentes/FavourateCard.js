@@ -1,12 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MenuItemes from "./MenuItemes";
 import { CDN_IMAGE_URL } from "../Utils/constant.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Payment } from "./PaymentCMP/Payment.js";
+import { addUserData } from "../Utils/Redux/userSlice.js";
 const FavourateCard = () => {
   const FavourateItemesCard = useSelector((states) => states.cart.itemes);
+  const userData = useSelector((state) => state.user.userData);
   const [totelPrice, setTotelPrice] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
     fun();
   }, [FavourateItemesCard]);
@@ -78,7 +81,11 @@ const FavourateCard = () => {
         <span> To Pay</span>
         <span className="ml-[250px]">{totelPrice + 20 + 4 + 50}</span>
         <div>
-          <Payment />
+          <Payment
+            setPrice={() =>
+              dispatch(addUserData({ ...userData, price: totelPrice }))
+            }
+          />
         </div>
       </div>
     </>

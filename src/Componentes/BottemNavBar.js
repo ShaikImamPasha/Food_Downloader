@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const BottemNavBar = () => {
   const [selector, setSelector] = useState(1);
+  const cardData = useSelector((data) => data.cart.itemes);
+  console.log("itmes", cardData);
   return (
     <>
       <div
@@ -45,17 +47,23 @@ const BottemNavBar = () => {
         <Link to={"/FavourateCard/"}>
           <div>
             {selector === 3 ? (
-              <img
-                src="https://c7.alamy.com/comp/2GP9DBM/shopping-cart-glyph-icon-with-plus-add-from-cart-e-commerce-sign-graph-symbol-for-your-web-site-design-logo-app-ui-vector-illustration-eps10-2GP9DBM.jpg"
-                className="w-10 h-10"
-              ></img>
+              <>
+                <img
+                  src="https://c7.alamy.com/comp/2GP9DBM/shopping-cart-glyph-icon-with-plus-add-from-cart-e-commerce-sign-graph-symbol-for-your-web-site-design-logo-app-ui-vector-illustration-eps10-2GP9DBM.jpg"
+                  className="w-10 h-10"
+                ></img>
+                <span className="absolute -top-2">{cardData.length}</span>
+              </>
             ) : (
-              <span
-                onClick={() => setSelector(3)}
-                class="material-symbols-outlined mt-3 cursor-pointer"
-              >
-                shopping_cart
-              </span>
+              <>
+                <span
+                  onClick={() => setSelector(3)}
+                  class="material-symbols-outlined mt-3 cursor-pointer"
+                >
+                  shopping_cart
+                </span>
+                <span>{cardData.length}</span>
+              </>
             )}
           </div>
         </Link>

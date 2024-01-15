@@ -15,6 +15,7 @@ import { Login } from "./Login";
 export const Header = () => {
   const dispatch = useDispatch();
   const states = useOnlineStates();
+  const [loder, setLoader] = useState(false);
   const isUserLoginData = useSelector((state) => state.user.userData);
   const searchlocatines = useSelector((state) => state.loc.searchlocatines);
   const [placeSearch, setPlaceSearch] = useGetPlace_Id();
@@ -37,6 +38,9 @@ export const Header = () => {
       },
       () => {}
     );
+  }
+  {
+    console.log(loder);
   }
   return (
     <>
@@ -63,7 +67,11 @@ export const Header = () => {
                   className="w-full h-12 shadow-lg border border-solid"
                   value={placeSearch}
                   onChange={(e) => {
-                    setPlaceSearch(e.target.value);
+                    setPlaceSearch(e.target.value),
+                      setLoader(true),
+                      setTimeout(() => {
+                        setLoader(false);
+                      }, 2000);
                   }}
                   placeholder="Enter area,street name"
                   type="text"
@@ -83,9 +91,17 @@ export const Header = () => {
                   <p className="text-gray-500  cursor-pointer"> Using Gps</p>
                 </div>
               </div>
-              <hr className="border border-solid border-black mt-2"></hr>
+              <hr className="border-[1.5px] border-black mt-2"></hr>
               <div className="bg-white  h-[400px] w-full overflow-auto ">
-                {searchlocatines ? (
+                {loder === true ? (
+                  <div class="loader3 mt-2">
+                    <div class="circle1"></div>
+                    <div class="circle1"></div>
+                    <div class="circle1"></div>
+                    <div class="circle1"></div>
+                    <div class="circle1"></div>
+                  </div>
+                ) : searchlocatines ? (
                   <SearchLocationes
                     className=""
                     data={searchlocatines}
@@ -114,15 +130,6 @@ export const Header = () => {
                 >
                   close
                 </span>
-                <input
-                  className="w-full h-12 shadow-lg border border-solid"
-                  value={placeSearch}
-                  onChange={(e) => {
-                    setPlaceSearch(e.target.value);
-                  }}
-                  placeholder="Enter area,street name"
-                  type="text"
-                ></input>
               </div>
 
               <div className="h-[50px] w-full  cursor-pointer flex flex-wrap  items-center">
@@ -133,18 +140,17 @@ export const Header = () => {
                 </div>
               </div>
               <hr className=" border border-solid border-black"></hr>
-              <div className="bg-white  h-[400px] w-full overflow-auto ">
-                {searchlocatines ? (
-                  <SearchLocationes className="" data={searchlocatines} />
-                ) : null}
-              </div>
+              <div className="bg-white  h-[400px] w-full overflow-auto "></div>
             </div>
           ) : null}
 
           <div className="flex flex-wrap  items-center w-full  gap-32">
-            <img className=" h-[80px]" src={LOGO_URL} />
+            <Link to={"/"}>
+              {" "}
+              <img className=" h-[50px] rounded-full" src={LOGO_URL} />
+            </Link>
             {LoginModel === true && isUserLoginData === null && (
-              <div className="fixed left-32 top-32 z-1">
+              <div className="fixed top-32 left-12 z-1">
                 <div>
                   {" "}
                   <Login />

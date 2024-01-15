@@ -34,14 +34,14 @@ const MiniCmpt = ({ data, indexKey, replay, replayAva, resid }) => {
       }
     }
     setPart({ to: to, message: message });
-  }, [data.message]);
+  }, []);
 
   function fun() {
     if (isUserLoginData === null) {
       dispatch(addLoginMode());
-    } else {
+    } else if (rePlaySearch !== " ") {
       socket.emit("addReply", {
-        restaurantId: 32,
+        restaurantId: resid,
         commentIndex: replayAva === true ? replay : indexKey,
         newReply: {
           name: "pasha",

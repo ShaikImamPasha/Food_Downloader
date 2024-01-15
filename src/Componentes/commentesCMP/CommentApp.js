@@ -37,7 +37,7 @@ const CommentApp = ({ resid }) => {
   const pushComment = () => {
     if (isUserLoginData === null) {
       dispatch(addLoginMode());
-    } else {
+    } else if (searchValue !== "") {
       socket.emit("addComment", {
         restaurantId: resid,
         newComment: {
@@ -56,7 +56,7 @@ const CommentApp = ({ resid }) => {
         <input
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Add a comment"
+          placeholder="Add Your Opinion On This Restaurant"
           type="text"
           className="border p-2 w-full md:w-1/2"
         />
@@ -64,7 +64,7 @@ const CommentApp = ({ resid }) => {
           onClick={pushComment}
           className="bg-blue-500 text-white px-4 py-2 mt-2 md:mt-0 md:ml-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
         >
-          Add Comment
+          Add
         </button>
         <button
           className=" text-gray-500 ml-3 hover:text-red-700 transition duration-300 "
