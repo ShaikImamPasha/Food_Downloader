@@ -32,7 +32,6 @@ export default function useSetLat_Lng() {
         } else {
           if (teampLRU.length >= 2) {
             var t = teampLRU.slice(0, 2);
-            console.log("sg", t);
             localStorage.setItem("lruCatch", JSON.stringify([...t, data1]));
           } else {
             localStorage.setItem(

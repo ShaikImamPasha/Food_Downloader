@@ -13,6 +13,7 @@ import { addLocation } from "../Utils/Redux/locationes";
 import useGetPlace_Id from "../Utils/Custom_Hooks/useGetPlace_Id";
 import { Login } from "./Login";
 export const Header = () => {
+  const [selector, setSelector] = useState(1);
   const dispatch = useDispatch();
   const states = useOnlineStates();
   const [loder, setLoader] = useState(false);
@@ -39,19 +40,16 @@ export const Header = () => {
       () => {}
     );
   }
-  {
-    console.log(loder);
-  }
   return (
     <>
-      <div className="flex md:flex-wrap h-full  w-full shadow-lg justify-start flex-wrap sticky top-0 z-40  bg-white">
+      <div className="flex md:flex-wrap h-full  md:w-full shadow-lg justify-center flex-wrap sticky top-0 z-40  bg-white">
         {restaurants.length === 0 ? (
           <div className="bg-white">
             {" "}
             <div className="h-[4px]  fixed top-0 left-0 w-0 animate-loading-line "></div>
           </div>
         ) : null}
-        <div>
+        <div className="w-full h-[100px] flex  md:items-center md:justify-center justify-between items-center">
           {isOpen === true ? (
             <div
               className={`bg-white h-[650px] w-full fixed  left-0 top-0 flex-wrap   card-container  animate-slide-in`}
@@ -143,12 +141,30 @@ export const Header = () => {
               <div className="bg-white  h-[400px] w-full overflow-auto "></div>
             </div>
           ) : null}
-
-          <div className="flex flex-wrap  items-center w-full  gap-32">
-            <Link to={"/"}>
-              {" "}
-              <img className=" h-[50px] rounded-full" src={LOGO_URL} />
-            </Link>
+          <Link to={"/"}>
+            {" "}
+            <img
+              className=" h-[100px] md:w-[380px] w-[250px] rounded-full"
+              src={LOGO_URL}
+            />
+          </Link>
+          <div className="flex flex-row w-full">
+            <div
+              onClick={() => (
+                dispatch(addLocation(true)),
+                setLoader(true),
+                setTimeout(() => setLoader(false), [2000])
+              )}
+            >
+              <span className="material-symbols-outlined cursor-pointer ">
+                add_location
+              </span>{" "}
+            </div>
+            <div>
+              <h3>{locationName}</h3>
+            </div>
+          </div>
+          <div className="flex flex-wrap  items-center w-full">
             {LoginModel === true && isUserLoginData === null && (
               <div className="fixed top-32 left-12 z-1">
                 <div>
@@ -158,7 +174,7 @@ export const Header = () => {
               </div>
             )}
             {LoginModel === false && (
-              <div>
+              <div className="md:hidden">
                 <button class="Btn">
                   <div class="sign">
                     <svg viewBox="0 0 512 512">
@@ -175,36 +191,61 @@ export const Header = () => {
               </div>
             )}
           </div>
-          <div>
-            <ul className="md:flex flex-wrap justify-evenly hidden">
-              <li className="px-2 h-auto">
-                Online Statues:{states ? "🟢" : "🛑"}
+          <div className="w-full md:flex hidden">
+            <ul className="md:flex justify-evenly  flex-wrap  hidden w-[750px]">
+              <li className="">Online Statues:{states ? "🟢" : "🛑"}</li>
+              <li className="">
+                <Link to="/" onClick={() => setSelector(1)}>
+                  Home
+                </Link>
+                {selector === 1 ? (
+                  <div className="w-11 h-[2.5px] border-3 bg-black"></div>
+                ) : null}
               </li>
-              <li className="px-2 h-auto">
-                <Link to="/">Home</Link>
+              <li className="">
+                <Link to="/about" onClick={() => setSelector(2)}>
+                  About Us
+                </Link>
+                {selector === 2 ? (
+                  <div className="w-[67px] h-[2.5px] border-3 bg-black"></div>
+                ) : null}
               </li>
-              <li className="px-2 h-auto">
-                <Link to="/about">About Us</Link>
+              <li className="">
+                <Link to="/contact" onClick={() => setSelector(3)}>
+                  Contact us
+                </Link>
+                {selector === 3 ? (
+                  <div className="w-[78px] h-[2.5px] border-3 bg-black"></div>
+                ) : null}
               </li>
-              <li className="px-2 h-auto">
-                <Link to="/contact">Contact us</Link>
+              <li className="">
+                <Link to="/FavourateCard" onClick={() => setSelector(4)}>
+                  Cart{itemCards.length}
+                </Link>
+                {selector === 4 ? (
+                  <div className="w-10 h-[2.5px] border-3 bg-black"></div>
+                ) : null}
               </li>
-              <li className="px-2 h-auto">
-                <Link to="/FavourateCard">Cart{itemCards.length}</Link>
-              </li>
-              <li className="px-2 h-auto">Login</li>
-            </ul>
-          </div>
+              <li className="">
+                {LoginModel === false && (
+                  <div>
+                    <button class="Btn">
+                      <div class="sign">
+                        <svg viewBox="0 0 512 512">
+                          <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path>
+                        </svg>
+                      </div>
 
-          <div className="flex flex-row ">
-            <div onClick={() => dispatch(addLocation(true))}>
-              <span className="material-symbols-outlined cursor-pointer ">
-                add_location
-              </span>{" "}
-            </div>
-            <div>
-              <h3>{locationName}</h3>
-            </div>
+                      <div class="text">
+                        <button onClick={() => dispatch(addLoginMode())}>
+                          login
+                        </button>
+                      </div>
+                    </button>
+                  </div>
+                )}
+              </li>
+            </ul>
           </div>
         </div>
       </div>

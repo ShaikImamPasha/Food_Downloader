@@ -177,7 +177,7 @@ const Body = (props) => {
       }
     }, 1000);
   };
-  console.log("gasgad", newDataLoader);
+
   if (newDataLoader === true) {
     return <Shimmer />;
   }

@@ -74,7 +74,7 @@ const MapCpt = () => {
           <MapContainer
             center={[22, 70]}
             zoom={4}
-            style={{ height: "400px", width: "450px" }}
+            style={{ height: "400px", width: "380px" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {mapdata.map((location, index) => (
@@ -99,7 +99,7 @@ const MapCpt = () => {
           </MapContainer>
         ) : (
           <>
-            <div className="w-full h-[600px] flex justify-center items-center bg-orange-400">
+            <div className="w-full h-[600px] flex justify-center items-center bg-orange-300">
               <div
                 aria-label="Orange and tan hamster running in a metal wheel"
                 role="img"
@@ -122,6 +122,9 @@ const MapCpt = () => {
                 </div>
                 <div class="spoke"></div>
               </div>
+            </div>
+            <div>
+              <p>please wait loading...</p>
             </div>
           </>
         )}

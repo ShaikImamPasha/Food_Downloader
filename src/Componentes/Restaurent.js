@@ -34,7 +34,7 @@ const Restaurent = () => {
     } =
       resInfo?.data?.cards[0]?.card?.card?.info ||
       resInfo?.data?.cards[2]?.card?.card?.info;
-    console.log(resInfo?.data?.cards[0]?.card?.card?.info);
+
     var menuitemes =
       resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards ||
       resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR.cards ||

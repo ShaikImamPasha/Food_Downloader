@@ -12,7 +12,6 @@ const Payment = ({ setPrice }) => {
   const navigator = useNavigate();
   const [loading, setLoading] = useState(false);
   const userDetailes = useSelector((state) => state.user.userData);
-  console.log("data", userDetailes);
   async function fun() {
     setLoading(true);
 
