@@ -17,11 +17,11 @@ const Card = (props) => {
   } = props?.data.info;
   return (
     <Link to={"/restaurent/" + id}>
-      <div className=" w-[150px] h-[310px] break-words bg-white-100 hover:bg-gray-200 rounded-md">
-        <div className="flex items-center justify-center">
+      <div className="w-[200px] h-[250px] md:w-[210px]  md:h-[300px] break-words bg-white-100 hover:bg-gray-200 rounded-md">
+        <div className="flex items-center justify-start">
           <img
             loading="lazy"
-            className="h-48 w-full rounded-3xl"
+            className="w-[150px] h-[150px] md:object-cover md:h-[190px]  md:w-[300px] rounded-3xl"
             alt="loading"
             src={CDN_IMAGE_URL + cloudinaryImageId}
           />
@@ -45,8 +45,8 @@ export const withDiscountCard = (Card) => {
   return (props) => {
     const { subHeader } = props.data.info.aggregatedDiscountInfoV3;
     return (
-      <div>
-        <h1 className="relative -bottom-48 ml-2 rounded-lg text-white font-bold">
+      <div className="md:flex">
+        <h1 className="relative left-36 rounded-lg text-white font-extrabold ml-2 ">
           {subHeader}Offer
         </h1>
         <Card data={props.data} />

@@ -11,7 +11,7 @@ const Slider = (props) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 6,
       slidesToSlide: 4, // optional, default to 1.
     },
     tablet: {
@@ -26,7 +26,7 @@ const Slider = (props) => {
     },
   };
   return (
-    <div className="w-[350px] h-full">
+    <div className="w-[350px] h-full md:w-[1000px]">
       <Carousel
         responsive={responsive}
         autoPlay={true}
@@ -44,7 +44,7 @@ const Slider = (props) => {
                 <Link to={"/bestoffers/" + imageUrl?.entityId}>
                   <div className="flex ml-2" key={index}>
                     <img
-                      className="w-[150px] h-[100px]"
+                      className="w-[250px] h-[150px]"
                       src={
                         "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/" +
                         imageUrl.imageId
@@ -60,9 +60,9 @@ const Slider = (props) => {
               //     console.log(imageUrl.entityId)
               return (
                 <Link to={"/bestoffers/" + imageUrl?.entityId}>
-                  <div className="flex ml-2" key={index}>
+                  <div className="flex ml-2 md:ml-3" key={index}>
                     <img
-                      className="w-[150px] h-[200px]"
+                      className="w-[350px] h-[220px]"
                       src={
                         "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/" +
                         imageUrl.imageId
@@ -83,7 +83,7 @@ const Slider = (props) => {
                     key={index}
                   >
                     <img
-                      className="w-[300px] h-[100px] rounded-lg"
+                      className="w-[300px] h-[150px] rounded-lg md:w-[400px] md:h-[200px]"
                       src={
                         "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/" +
                         imageUrl.info.cloudinaryImageId
@@ -91,7 +91,7 @@ const Slider = (props) => {
                       alt="movie"
                     />
                     {imageUrl?.info?.aggregatedDiscountInfoV3 && (
-                      <div className=" text-center absolute top-[60px] bg-white border rounded-md w-[75px] left-4">
+                      <div className=" text-center absolute top-[100px] md:top-[157px] bg-white border rounded-full w-[75px] left-4">
                         <small className="text-[14px] text-orange-800 font-bold">
                           {imageUrl?.info?.aggregatedDiscountInfoV3?.header}
                         </small>

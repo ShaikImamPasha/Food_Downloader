@@ -42,14 +42,14 @@ export const Header = () => {
   }
   return (
     <>
-      <div className="flex md:flex-wrap h-full  md:w-full shadow-lg justify-center flex-wrap sticky top-0 z-40  bg-white">
+      <div className="flex md:flex-wrap h-full  md:w-full shadow-lg justify-center md:items-center flex-wrap sticky top-0 z-40  bg-white">
         {restaurants.length === 0 ? (
           <div className="bg-white">
             {" "}
             <div className="h-[4px]  fixed top-0 left-0 w-0 animate-loading-line "></div>
           </div>
         ) : null}
-        <div className="w-full h-[100px] flex  md:items-center md:justify-center justify-between items-center">
+        <div className="w-full h-[100px] flex  md:items-center md:justify-center justify-evenly items-center">
           {isOpen === true ? (
             <div
               className={`bg-white h-[650px] w-full fixed  left-0 top-0 flex-wrap   card-container  animate-slide-in`}
@@ -148,7 +148,7 @@ export const Header = () => {
               src={LOGO_URL}
             />
           </Link>
-          <div className="flex flex-row w-full">
+          <div className="flex flex-row w-full md:ml-8">
             <div
               onClick={() => (
                 dispatch(addLocation(true)),
@@ -160,7 +160,7 @@ export const Header = () => {
                 add_location
               </span>{" "}
             </div>
-            <div>
+            <div className="ml-1">
               <h3>{locationName}</h3>
             </div>
           </div>
