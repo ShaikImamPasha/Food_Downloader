@@ -40,6 +40,15 @@ export const Header = () => {
       () => {}
     );
   }
+  function count() {
+    var c = 0;
+    itemCards.map((data) => {
+      if (data.addSymbole === true) {
+        c++;
+      }
+    });
+    return c;
+  }
   return (
     <>
       <div className="flex md:flex-wrap h-full  md:w-full shadow-lg justify-center md:items-center flex-wrap sticky top-0 z-40  bg-white">
@@ -144,6 +153,7 @@ export const Header = () => {
           <Link to={"/"}>
             {" "}
             <img
+              onClick={() => setSelector(1)}
               className=" h-[100px] md:w-[380px] w-[250px] rounded-full"
               src={LOGO_URL}
             />
@@ -166,7 +176,7 @@ export const Header = () => {
           </div>
           <div className="flex flex-wrap  items-center w-full">
             {LoginModel === true && isUserLoginData === null && (
-              <div className="fixed top-32 left-12 z-1">
+              <div className="fixed top-32 left-12 md:left-72 z-1">
                 <div>
                   {" "}
                   <Login />
@@ -220,7 +230,7 @@ export const Header = () => {
               </li>
               <li className="">
                 <Link to="/FavourateCard" onClick={() => setSelector(4)}>
-                  Cart{itemCards.length}
+                  Cart{count()}
                 </Link>
                 {selector === 4 ? (
                   <div className="w-10 h-[2.5px] border-3 bg-black"></div>

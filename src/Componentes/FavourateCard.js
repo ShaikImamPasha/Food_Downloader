@@ -15,7 +15,9 @@ const FavourateCard = () => {
   }, [FavourateItemesCard]);
   function fun() {
     var a = FavourateItemesCard.reduce(
-      (i, data) => (data.addSymbole && (data.price * data.count) / 100) + i,
+      (i, data) =>
+        (data.addSymbole &&
+          ((data.price || data.defaultPrice) * data.count) / 100) + i,
       0
     );
     setTotelPrice(a);
@@ -45,6 +47,7 @@ const FavourateCard = () => {
       </>
     );
   }
+  console.log("fadada", FavourateItemesCard);
   return (
     <>
       <div className="border-solid border-2  rounded-lg shadow-orange-800 flex flex-wrap justify-center item-center ml-2">
@@ -54,38 +57,40 @@ const FavourateCard = () => {
           })}
         </div>
       </div>
-      <h1 className="mt-3 ml-2 font-medium">Bill Deatils</h1>
-      <div className="ml-2 text-gray-500">
-        <span>Item Totel</span>
-        <span className="ml-[228px]">₹{totelPrice}</span>
-        <div>
-          <span>Delivery Tip</span>
-          <span className="ml-[215px]">₹{20}</span>
+      <div className="md:flex justify-center items-center flex-col">
+        <h1 className="mt-3 ml-2 font-medium">Bill Deatils</h1>
+        <div className="ml-2 text-gray-500">
+          <span>Item Totel</span>
+          <span className="ml-[228px]">₹{totelPrice}</span>
+          <div>
+            <span>Delivery Tip</span>
+            <span className="ml-[215px]">₹{20}</span>
+          </div>
+          <div>
+            <span>Platform Fee</span>
+            <span className="ml-[210px]">
+              ₹{<del>10</del>}
+              <span className="ml-1">{4}</span>
+            </span>
+          </div>
+          <div>
+            <span>GST and Restaurant Charges</span>
+            <span className="ml-[97px]">₹{50}</span>
+          </div>
         </div>
-        <div>
-          <span>Platform Fee</span>
-          <span className="ml-[210px]">
-            ₹{<del>10</del>}
-            <span className="ml-1">{4}</span>
-          </span>
+        <div className="flex items-center justify-around mt-3">
+          <div className="w-96 h-[1.5px] bg-black"></div>
         </div>
-        <div>
-          <span>GST and Restaurant Charges</span>
-          <span className="ml-[97px]">₹{50}</span>
-        </div>
-      </div>
-      <div className="flex items-center justify-around mt-3">
-        <div className="w-96 h-[1.5px] bg-black"></div>
-      </div>
-      <div className="ml-2 mt-2 font-medium">
-        <span> To Pay</span>
-        <span className="ml-[250px]">{totelPrice + 20 + 4 + 50}</span>
-        <div>
-          <Payment
-            setPrice={() =>
-              dispatch(addUserData({ ...userData, price: totelPrice }))
-            }
-          />
+        <div className="ml-2 mt-2 font-medium">
+          <span> To Pay</span>
+          <span className="ml-[250px]">{totelPrice + 20 + 4 + 50}</span>
+          <div>
+            <Payment
+              setPrice={() =>
+                dispatch(addUserData({ ...userData, price: totelPrice }))
+              }
+            />
+          </div>
         </div>
       </div>
     </>

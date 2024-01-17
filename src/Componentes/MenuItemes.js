@@ -104,7 +104,7 @@ const MenuItemes = ({ data, Fav }) => {
       {
         <div className="mt-5">
           <div>
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-around gap-1">
               {" "}
               {/*Data for card */}
               <div>

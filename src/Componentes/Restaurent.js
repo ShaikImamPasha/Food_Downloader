@@ -49,9 +49,9 @@ const Restaurent = () => {
       <div className="">
         <div className="">
           <div className="">
-            <div className="bg-gray-100 h-32">
+            <div className="bg-gray-100 h-32 flex flex-col justify-center items-center ">
               <div className="font-medium text-lg ml-2">{name}</div>
-              <div className="border-2 w-full h-[93px] rounded-lg flex justify-start p-2 bg-white flex-col">
+              <div className="border-2 w-full h-[93px] rounded-lg flex  justify-center items-center p-2 bg-white flex-col">
                 <div className="bold font-semibold">
                   <img
                     className="w-5 h-5 rounded-2xl inline-block mr-2"
@@ -87,7 +87,7 @@ const Restaurent = () => {
               ))}
             </div>
             {CommentModel === true && (
-              <div className="absolute top-60 left-7 bg-white">
+              <div className="absolute top-32 left-11 md:top-60 md:left-96 bg-white">
                 <CommentApp resid={resid} />
               </div>
             )}

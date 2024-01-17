@@ -29,21 +29,21 @@ const MenuRestarent = (props) => {
     <>
       <div className="">
         {itemCards && (
-          <div className="flex justify-center items-center mt-1">
+          <div className="flex justify-center items-center  mt-1">
             <h3 className="font-bold">
               {title}({props?.data?.card?.card?.itemCards?.length})
             </h3>
             {arrow ? (
               <span
                 onClick={arrow ? setArrayClose : setArryFunctions}
-                class="material-symbols-outlined"
+                class="material-symbols-outlined cursor-pointer"
               >
                 keyboard_arrow_up
               </span>
             ) : (
               <span
                 onClick={arrow ? setArrayClose : setArryFunctions}
-                class="material-symbols-outlined"
+                class="material-symbols-outlined cursor-pointer"
               >
                 keyboard_arrow_down
               </span>
@@ -58,7 +58,7 @@ const MenuRestarent = (props) => {
             loader={<p className="text-center">plesse wiat load tha food</p>}
             endMessage={<p className="text-center">end of data</p>}
           >
-            <div className="">
+            <div className="flex justify-center items-center flex-col">
               {itemCards &&
                 presntData.map((data, index) => {
                   return (
