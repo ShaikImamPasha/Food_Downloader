@@ -239,7 +239,7 @@ const Body = (props) => {
           }
         >
           <div>
-            <div className="flex flex-wrap items-center justify-between  mt-5 overflow-hidden">
+            <div className="flex flex-wrap md:ml-14 gap-3 justify-center items-center  md:justify-center mt-5 overflow-hidden">
               {tempdata.map((information) => {
                 return information.info.aggregatedDiscountInfoV3 ? (
                   <CardWithDiscount
