@@ -3,33 +3,48 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "./Card";
 import { withDiscountCard } from "./Card";
-const SearchFood=()=>{
-    const CardWithDiscount=withDiscountCard(Card);
-    const [searchtest,setSearchtest]=useState("");
-    const [tempdata,setTemdata]=useState([]); 
-    const orginalData=useSelector((state)=>state.cart.resturentData)
-    function searchdata(){
-        var filterdata=orginalData.filter((e)=> e.info.name.toLowerCase().includes(searchtest.toLowerCase()));
-        setTemdata(filterdata);
-    }
-    return(
-        <>
+const SearchFood = () => {
+  const CardWithDiscount = withDiscountCard(Card);
+  const [searchtest, setSearchtest] = useState("");
+  const [tempdata, setTemdata] = useState([]);
+  const orginalData = useSelector((state) => state.cart.resturentData);
+  function searchdata() {
+    var filterdata = orginalData.filter((e) =>
+      e.info.name.toLowerCase().includes(searchtest.toLowerCase())
+    );
+    setTemdata(filterdata);
+  }
+  return (
+    <>
+      <div>
         <div>
-            <div>
-            <div className="p-5 flex justify-center flex-wrap">
-              <input className="border-r-0 w-[200px] border border-solid border-black" placeholder="Enter restaurant name" type="text" value={searchtest} onChange={(e)=>setSearchtest(e.target.value)}></input>
-              <span className="material-symbols-outlined w-7 bg-orange-400" onClick={searchdata}>search</span>
-            </div>
-            </div>
-            <div className="flex flex-wrap items-center justify-center">
-                    {tempdata.map((information)=>{
-                        return(
-                            information.info.aggregatedDiscountInfoV3?<CardWithDiscount key={information.info.id} data={information}/>:<Card key={information.info.id} data={information}></Card>
-                        )
-                    })}
-            </div>
+          <div className="p-5 flex justify-center flex-wrap">
+            <input
+              className="border-r-0 w-[200px] border border-solid border-black"
+              placeholder="Enter restaurant name"
+              type="text"
+              value={searchtest}
+              onChange={(e) => setSearchtest(e.target.value)}
+            ></input>
+            <span
+              className="material-symbols-outlined w-7 bg-orange-400 cursor-pointer"
+              onClick={searchdata}
+            >
+              search
+            </span>
+          </div>
         </div>
-        </>
-    )
-}
+        <div className="flex flex-wrap items-center justify-center">
+          {tempdata.map((information) => {
+            return information.info.aggregatedDiscountInfoV3 ? (
+              <CardWithDiscount key={information.info.id} data={information} />
+            ) : (
+              <Card key={information.info.id} data={information}></Card>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+};
 export default SearchFood;

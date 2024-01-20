@@ -222,11 +222,11 @@ export const Header = () => {
                 ) : null}
               </li>
               <li className="">
-                <Link to="/contact" onClick={() => setSelector(3)}>
-                  Contact us
+                <Link to="/search" onClick={() => setSelector(3)}>
+                  Search
                 </Link>
                 {selector === 3 ? (
-                  <div className="w-[78px] h-[2.5px] border-3 bg-black"></div>
+                  <div className="w-[50px] h-[2.5px] border-3 bg-black"></div>
                 ) : null}
               </li>
               <li className="">
