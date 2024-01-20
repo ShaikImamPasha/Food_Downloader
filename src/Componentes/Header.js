@@ -29,6 +29,7 @@ export const Header = () => {
   const LoginModel = useSelector((state) => state.user.LoginModel);
   var lruCatch = JSON.parse(localStorage.getItem("lruCatch"));
   var lruCatchData = JSON.parse(localStorage.getItem("lruCatch"));
+  console.log("ser", searchlocatines);
   async function getlocation() {
     navigator.geolocation.getCurrentPosition(
       async (data) => {
@@ -213,11 +214,11 @@ export const Header = () => {
                 ) : null}
               </li>
               <li className="">
-                <Link to="/about" onClick={() => setSelector(2)}>
-                  About Us
+                <Link to="/map" onClick={() => setSelector(2)}>
+                  Map
                 </Link>
                 {selector === 2 ? (
-                  <div className="w-[67px] h-[2.5px] border-3 bg-black"></div>
+                  <div className="w-[34px] h-[2.5px] border-3 bg-black"></div>
                 ) : null}
               </li>
               <li className="">
@@ -230,7 +231,7 @@ export const Header = () => {
               </li>
               <li className="">
                 <Link to="/FavourateCard" onClick={() => setSelector(4)}>
-                  Cart{count()}
+                  Cart({count()})
                 </Link>
                 {selector === 4 ? (
                   <div className="w-10 h-[2.5px] border-3 bg-black"></div>

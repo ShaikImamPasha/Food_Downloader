@@ -16,6 +16,7 @@ const MapCpt = () => {
   const lng = useSelector((state) => state.loc.lng);
   useEffect(() => {
     fetchMapData();
+    console.log("lat", lat, lng);
   }, [lat, lng, resturentData]);
   async function fetchMapData() {
     var json_data = await fetch(
@@ -69,7 +70,7 @@ const MapCpt = () => {
   }
   return (
     <>
-      <div className="">
+      <div className="z-10 relative">
         {mapdata.length !== 0 ? (
           <MapContainer
             center={[22, 70]}

@@ -45,11 +45,12 @@ const Body = (props) => {
     if (newDataLoader === true) {
       var teamp = setTimeout(() => {
         dispatch(addNewDataLoader(false));
-      }, [2000]);
+      }, [5000]);
     }
     return () => {
       clearTimeout(teamp);
     };
+    console.log("lattt", lat);
   }, [lat, lng, newDataLoader]); //it's worked after all componentes are renderd.
 
   const fetchdata = async () => {

@@ -64,15 +64,19 @@ const SearchLocationes = (props) => {
                 onClick={() => {
                   setCustomHook_Lat_Lng_Fun(data.place_id);
                   dispatch(addPlaceName(data.description));
-                  dispatch(addLocation(false));
-                  dispatch(addNewDataLoader(true));
+                  setTimeout(() => {
+                    dispatch(addLocation(false));
+                    dispatch(addNewDataLoader(true));
+                  }, [200]);
                 }}
                 className="w-full h-full gap-3  cursor-pointer flex items-center justify-start mb-4 mt-2"
               >
                 <div
                   onClick={() => {
                     setCustomHook_Lat_Lng_Fun(data.place_id);
-                    dispatch(addNewDataLoader(true));
+                    setTimeout(() => {
+                      dispatch(addNewDataLoader(true));
+                    }, [100]);
                   }}
                   className=""
                 >

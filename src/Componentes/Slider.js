@@ -25,6 +25,7 @@ const Slider = (props) => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+  console.log(props.data, whatOnYourMind);
   return (
     <div className="w-[350px] h-full md:w-[1000px]">
       <Carousel
