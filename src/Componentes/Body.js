@@ -1,5 +1,5 @@
 import Card, { withDiscountCard } from "./Card.js";
-import Shimmer from "./Shimmer.js";
+import { Shimmer } from "./index.js";
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";

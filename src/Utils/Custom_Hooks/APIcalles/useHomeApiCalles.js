@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { addResturentData } from "../Redux/cardSlice";
-import { addWhatOnYourMind, TopOfferesForYou } from "../Redux/locationes";
+import { addResturentData } from "../../Redux/cardSlice";
+import { addWhatOnYourMind, TopOfferesForYou } from "../../Redux/locationes";
 import { useDispatch, useSelector } from "react-redux";
 const useHomeApiCalles = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const useHomeApiCalles = () => {
 
     if (data1.ok === false && data1.status === 404) {
       data1 = await fetch(
-        `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
+        `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
       );
 
       var json_data = await data1.json();

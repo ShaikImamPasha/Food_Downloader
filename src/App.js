@@ -1,21 +1,13 @@
-import About from "./Componentes/About";
 import ReactDOM from "react-dom/client";
 import * as objtype from "./Componentes/Header";
-import Body from "./Componentes/Body";
 import Error from "./Componentes/Error";
-import Restaurent from "./Componentes/Restaurent";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Suspense, lazy, useState } from "react";
 import UserContext from "./Utils/Context/UserContext";
 import CardState from "./Utils/Context/CardState";
 import { Provider } from "react-redux";
 import appStore from "./Utils/Redux/appStore";
-import FavourateCard from "./Componentes/FavourateCard";
 import BottemNavBar from "./Componentes/BottemNavBar";
-import SearchFood from "./Componentes/SearchFood";
-import MapCpt from "./Componentes/MapCpt";
-import Bestoffers from "./Componentes/Bestoffers";
-import { Succes } from "./Componentes/PaymentCMP/Succes";
 /**
  * Low level planing
  * NavBar
@@ -34,6 +26,14 @@ import { Succes } from "./Componentes/PaymentCMP/Succes";
  *   -contact
  */
 const Contactus = lazy(() => import("./Componentes/Contactus"));
+const Body = lazy(() => import("./Componentes/Body"));
+const SearchFood = lazy(() => import("./Componentes/SearchFood"));
+const About = lazy(() => import("./Componentes/About"));
+const Restaurent = lazy(() => import("./Componentes/menuItemes/Restaurent"));
+const FavourateCard = lazy(() => import("./Componentes/FavourateCard"));
+const MapCpt = lazy(() => import("./Componentes/mapCMP/MapCpt"));
+const Bestoffers = lazy(() => import("./Componentes/Bestoffers"));
+const Succes = lazy(() => import("./Componentes/PaymentCMP/Succes"));
 
 const AppLayout = () => {
   const [cardNumber, setCardNumber] = useState(0);
@@ -60,15 +60,27 @@ const Approter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <Body />
+          </Suspense>
+        ),
       },
       {
         path: "/search",
-        element: <SearchFood />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <SearchFood />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -80,23 +92,45 @@ const Approter = createBrowserRouter([
       },
       {
         path: "/restaurent/:resid",
-        element: <Restaurent />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <Restaurent />
+          </Suspense>
+        ),
       },
       {
         path: "/FavourateCard",
-        element: <FavourateCard />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            {" "}
+            <FavourateCard />
+          </Suspense>
+        ),
       },
       {
         path: "/map/",
-        element: <MapCpt />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <MapCpt />
+          </Suspense>
+        ),
       },
       {
         path: "/bestoffers/:id",
-        element: <Bestoffers />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            <Bestoffers />
+          </Suspense>
+        ),
       },
       {
         path: "/order",
-        element: <Succes />,
+        element: (
+          <Suspense fallback={<h1>loading</h1>}>
+            {" "}
+            <Succes />
+          </Suspense>
+        ),
       },
     ],
   },

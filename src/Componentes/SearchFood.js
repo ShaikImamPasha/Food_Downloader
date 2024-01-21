@@ -3,17 +3,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "./Card";
 import { withDiscountCard } from "./Card";
+import { useFilterFood } from "../Utils";
 const SearchFood = () => {
   const CardWithDiscount = withDiscountCard(Card);
   const [searchtest, setSearchtest] = useState("");
   const [tempdata, setTemdata] = useState([]);
   const orginalData = useSelector((state) => state.cart.resturentData);
-  function searchdata() {
-    var filterdata = orginalData.filter((e) =>
-      e.info.name.toLowerCase().includes(searchtest.toLowerCase())
-    );
-    setTemdata(filterdata);
-  }
   return (
     <>
       <div>
@@ -28,7 +23,10 @@ const SearchFood = () => {
             ></input>
             <span
               className="material-symbols-outlined w-7 bg-orange-400 cursor-pointer"
-              onClick={searchdata}
+              onClick={() => {
+                var resultes = useFilterFood(orginalData, searchtest);
+                setTemdata(resultes);
+              }}
             >
               search
             </span>

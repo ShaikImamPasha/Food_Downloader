@@ -1,12 +1,10 @@
-// SignupForm.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoginMode, addUserData } from "../Utils/Redux/userSlice";
+import { useCreateAccount, useLoginAccount } from "../Utils";
 import dotenv from "dotenv";
-import { json } from "react-router-dom";
 dotenv.config();
 const Login = () => {
-  const isUserLoginData = useSelector((state) => state.user.userData);
   var [loginAccountDetailes, setLoginAccount] = useState({
     gmail: "",
     password: "",
@@ -18,48 +16,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const toggleMode = () => {
     setIsLoginMode((prevMode) => !prevMode);
-  };
-  const createAccount = async () => {
-    if (!name === "" || !gmail === "" || password !== "") {
-      await fetch("https://rich-neckerchief-jay.cyclic.app/" + "create/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          gmail: gmail,
-          password: password,
-        }),
-      }).then(async (data) => {
-        var t = await data.json();
-      });
-    }
-  };
-  const loginAccount = async () => {
-    if (
-      loginAccountDetailes.gmail !== "" ||
-      loginAccountDetailes.password !== ""
-    ) {
-      await fetch("https://rich-neckerchief-jay.cyclic.app/" + "api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          gmail: loginAccountDetailes.gmail,
-          password: loginAccountDetailes.password,
-        }),
-      }).then(async (data) => {
-        if (data.ok === true) {
-          data = await data.json();
-
-          dispatch(addUserData(data.user));
-        } else {
-          console.log("enter correct data");
-        }
-      });
-    }
   };
   return (
     <div className="container pb-24 ">
@@ -117,7 +73,13 @@ const Login = () => {
                 <span>Password</span>
               </div>
 
-              <button className="enter" onClick={() => loginAccount()}>
+              <button
+                className="enter"
+                onClick={() => {
+                  const { data } = useLoginAccount(loginAccountDetailes);
+                  dispatch(addUserData(data));
+                }}
+              >
                 Login
               </button>
             </>
@@ -156,7 +118,10 @@ const Login = () => {
                 <span>Password</span>
               </div>
 
-              <button className="enter" onClick={() => createAccount()}>
+              <button
+                className="enter"
+                onClick={() => useCreateAccount(name, gmail, password)}
+              >
                 Create Account
               </button>
             </>

@@ -14,7 +14,7 @@ const useResturent = (resid) => {
 
     if (data1.ok === false && data1.status === 404) {
       data1 = await fetch(
-        `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${resid}`
+        `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${resid}`
       );
       data1 = await data1.json();
       setResInfo(data1);
@@ -27,4 +27,4 @@ const useResturent = (resid) => {
   };
   return resInfo;
 };
-export default useResturent;
+export { useResturent };

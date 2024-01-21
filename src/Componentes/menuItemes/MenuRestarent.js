@@ -1,8 +1,7 @@
 import { useState, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Shimmer from "./Shimmer.js";
 import MenuItemes from "./MenuItemes.js";
-import CardState from "../Utils/Context/CardState.js";
+import CardState from "../../Utils/Context/CardState.js";
 const MenuRestarent = (props) => {
   const { title, arrow, setArryFunctions, setArrayClose } = props;
   const { itemCards } = props?.data?.card?.card;

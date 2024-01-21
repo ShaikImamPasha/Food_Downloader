@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Shimmer from "./Shimmer";
+import { Shimmer } from "./index";
 import Card from "./Card";
 import data from "../Utils/mockData";
 import { useSelector } from "react-redux";

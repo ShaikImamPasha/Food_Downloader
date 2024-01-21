@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { addLat, addLng } from "../Redux/locationes";
+import { addLat, addLng } from "../../Redux/locationes";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { addLruCatch } from "../Redux/headerSlice";
+import { addLruCatch } from "../../Redux/headerSlice";
 export default function useSetLat_Lng() {
   const dispatch = useDispatch();
   const [placeSearch, setData] = useState(" ");
@@ -24,7 +24,7 @@ export default function useSetLat_Lng() {
 
     if (count === 0) {
       if (placeSearch !== " ") {
-        const url = `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${placeSearch}`;
+        const url = `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${placeSearch}`;
         var data1 = await fetch(url);
         console.log("data", data1);
         console.log("pls", placeSearch);

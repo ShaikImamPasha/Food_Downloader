@@ -1,11 +1,11 @@
-import Shimmer from "./Shimmer";
+import { Shimmer } from "../index";
 import MenuRestarent from "./MenuRestarent";
 import { useParams } from "react-router-dom";
-import useResturent from "../Utils/Custom_Hooks/useResturent";
+import { useResturent } from "../../Utils";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCommentModel } from "../Utils/Redux/userSlice";
-import { CommentApp } from "./commentesCMP/CommentApp";
+import { addCommentModel } from "../../Utils/Redux/userSlice";
+import { CommentApp } from "../commentesCMP/CommentApp";
 
 const Restaurent = () => {
   const dispatch = useDispatch();

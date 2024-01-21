@@ -1,37 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import MenuItemes from "./MenuItemes";
+import MenuItemes from "./menuItemes/MenuItemes.js";
 import { CDN_IMAGE_URL } from "../Utils/constant.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Payment } from "./PaymentCMP/Payment.js";
 import { addUserData } from "../Utils/Redux/userSlice.js";
+import { useCalClateFavCard, useCalTotalPrice } from "../Utils/index.js";
 const FavourateCard = () => {
   const FavourateItemesCard = useSelector((states) => states.cart.itemes);
   const userData = useSelector((state) => state.user.userData);
-  const [totelPrice, setTotelPrice] = useState(0);
+  const { price } = useCalTotalPrice();
+  const [totelPrice, setTotelPrice] = useState(price);
   const dispatch = useDispatch();
   useEffect(() => {
-    fun();
-  }, [FavourateItemesCard]);
-  function fun() {
-    var a = FavourateItemesCard.reduce(
-      (i, data) =>
-        (data.addSymbole &&
-          ((data.price || data.defaultPrice) * data.count) / 100) + i,
-      0
-    );
-    setTotelPrice(a);
-  }
-  function calClateFavCard() {
-    var count = 0;
-    FavourateItemesCard.map((data) => {
-      if (data.addSymbole) {
-        count++;
-      }
-    });
-    return count === 0 ? true : false;
-  }
-  if (calClateFavCard()) {
+    setTotelPrice(price);
+  }, [price]);
+  if (useCalClateFavCard()) {
     return (
       <>
         <div className="flex flex-col flex-wrap justify-center items-center">
@@ -47,7 +31,6 @@ const FavourateCard = () => {
       </>
     );
   }
-  console.log("fadada", FavourateItemesCard);
   return (
     <>
       <div className="border-solid border-2  rounded-lg shadow-orange-800 flex flex-wrap justify-center item-center ml-2">

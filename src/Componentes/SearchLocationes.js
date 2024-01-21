@@ -6,13 +6,12 @@ import {
   addLng,
 } from "../Utils/Redux/locationes";
 import { useEffect, useState } from "react";
-import useSetLat_Lng from "../Utils/Custom_Hooks/useSetLat_Lng";
+import useSetLat_Lng from "../Utils/Custom_Hooks/Location/useSetLat_Lng";
 import { addNewDataLoader } from "../Utils/Redux/headerSlice";
 const SearchLocationes = (props) => {
   const { data, lruOpen } = props;
   const [custom_hook_lat_lng_data, setCustomHook_Lat_Lng_Fun] = useSetLat_Lng();
   const dispatch = useDispatch();
-  var lruData = JSON.parse(localStorage.getItem("lruCatch"));
   return (
     <>
       {lruOpen === true ? (

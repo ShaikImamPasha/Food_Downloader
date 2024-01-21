@@ -1,16 +1,13 @@
 import { LOGO_URL } from "../Utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStates from "../Utils/Custom_Hooks/useOnlineStates";
+import SearchLocationes from "./SearchLocationes";
 import { addLoginMode } from "../Utils/Redux/userSlice";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../Utils/Context/UserContext";
-import CardState from "../Utils/Context/CardState";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
-import SearchLocationes from "./SearchLocationes";
-import GetCurronLocation from "../Utils/Custom_Hooks/useGetCurrontLocation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addLocation } from "../Utils/Redux/locationes";
-import useGetPlace_Id from "../Utils/Custom_Hooks/useGetPlace_Id";
+import useGetPlace_Id from "../Utils/Custom_Hooks/Location/useGetPlace_Id";
+import { useCountNoOfItemes } from "../Utils";
 import { Login } from "./Login";
 export const Header = () => {
   const [selector, setSelector] = useState(1);
@@ -20,16 +17,11 @@ export const Header = () => {
   const isUserLoginData = useSelector((state) => state.user.userData);
   const searchlocatines = useSelector((state) => state.loc.searchlocatines);
   const [placeSearch, setPlaceSearch] = useGetPlace_Id();
-  const [curtntLocation, setcurontLocation] = useState("");
-  const itemCards = useSelector((state) => state.cart.itemes);
   const isOpen = useSelector((state) => state.loc.isOpen);
   const locationName = useSelector((states) => states.loc.locationName);
-  const [openSearchLocation, setOpenSearchLocatoon] = useState(false);
   const restaurants = useSelector((state) => state.cart.resturentData);
   const LoginModel = useSelector((state) => state.user.LoginModel);
-  var lruCatch = JSON.parse(localStorage.getItem("lruCatch"));
   var lruCatchData = JSON.parse(localStorage.getItem("lruCatch"));
-  console.log("ser", searchlocatines);
   async function getlocation() {
     navigator.geolocation.getCurrentPosition(
       async (data) => {
@@ -40,15 +32,6 @@ export const Header = () => {
       },
       () => {}
     );
-  }
-  function count() {
-    var c = 0;
-    itemCards.map((data) => {
-      if (data.addSymbole === true) {
-        c++;
-      }
-    });
-    return c;
   }
   return (
     <>
@@ -231,7 +214,7 @@ export const Header = () => {
               </li>
               <li className="">
                 <Link to="/FavourateCard" onClick={() => setSelector(4)}>
-                  Cart({count()})
+                  Cart({useCountNoOfItemes()})
                 </Link>
                 {selector === 4 ? (
                   <div className="w-10 h-[2.5px] border-3 bg-black"></div>
