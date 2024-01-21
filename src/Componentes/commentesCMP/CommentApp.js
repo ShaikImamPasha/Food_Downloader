@@ -5,7 +5,6 @@ import { addCommentModel } from "../../Utils/Redux/userSlice";
 import { useSelector } from "react-redux";
 import dotenv from "dotenv";
 dotenv.config();
-import MiniCmpt from "./MiniCmpt";
 import { useDispatch } from "react-redux";
 import { addLoginMode } from "../../Utils/Redux/userSlice";
 const CommentApp = ({ resid }) => {
@@ -14,11 +13,11 @@ const CommentApp = ({ resid }) => {
   const dispatch = useDispatch();
   const isUserLoginData = useSelector((state) => state.user.userData);
   const socket = io(process.env.Back_End_Socket_Api_Url);
-
   useEffect(() => {
     socket.emit("requestInitialData", { restaurantId: resid });
 
     socket.on("initialData", (initialData) => {
+      console.log("ini", initialData);
       setCommentsData(initialData);
     });
 

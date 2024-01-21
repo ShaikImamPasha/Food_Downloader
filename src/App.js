@@ -8,6 +8,8 @@ import CardState from "./Utils/Context/CardState";
 import { Provider } from "react-redux";
 import appStore from "./Utils/Redux/appStore";
 import BottemNavBar from "./Componentes/BottemNavBar";
+import { MapShimmer, Shimmer } from "./Componentes";
+import LineaarShimmer from "./Componentes/Shimmers/LinearShimmer";
 /**
  * Low level planing
  * NavBar
@@ -61,7 +63,7 @@ const Approter = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <Body />
           </Suspense>
         ),
@@ -69,7 +71,7 @@ const Approter = createBrowserRouter([
       {
         path: "/search",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<p>Loading</p>}>
             <SearchFood />
           </Suspense>
         ),
@@ -77,7 +79,7 @@ const Approter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <About />
           </Suspense>
         ),
@@ -85,7 +87,7 @@ const Approter = createBrowserRouter([
       {
         path: "/contact",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <Contactus />
           </Suspense>
         ),
@@ -93,7 +95,7 @@ const Approter = createBrowserRouter([
       {
         path: "/restaurent/:resid",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<LineaarShimmer />}>
             <Restaurent />
           </Suspense>
         ),
@@ -101,7 +103,7 @@ const Approter = createBrowserRouter([
       {
         path: "/FavourateCard",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<p>Loading</p>}>
             {" "}
             <FavourateCard />
           </Suspense>
@@ -110,7 +112,7 @@ const Approter = createBrowserRouter([
       {
         path: "/map/",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<MapShimmer />}>
             <MapCpt />
           </Suspense>
         ),
@@ -118,7 +120,7 @@ const Approter = createBrowserRouter([
       {
         path: "/bestoffers/:id",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <Bestoffers />
           </Suspense>
         ),
@@ -126,7 +128,7 @@ const Approter = createBrowserRouter([
       {
         path: "/order",
         element: (
-          <Suspense fallback={<h1>loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             {" "}
             <Succes />
           </Suspense>

@@ -76,8 +76,10 @@ const Login = () => {
               <button
                 className="enter"
                 onClick={() => {
-                  const { data } = useLoginAccount(loginAccountDetailes);
-                  dispatch(addUserData(data));
+                  const data = useLoginAccount(loginAccountDetailes);
+                  data.then((data) => {
+                    dispatch(addUserData(data));
+                  });
                 }}
               >
                 Login

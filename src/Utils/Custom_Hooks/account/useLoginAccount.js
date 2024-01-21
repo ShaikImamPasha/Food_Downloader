@@ -22,6 +22,6 @@ const useLoginAccount = async (loginAccountDetailes) => {
       }
     });
   }
-  return { userData };
+  return userData;
 };
 export { useLoginAccount };

@@ -2,7 +2,7 @@ import { LOGO_URL } from "../Utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStates from "../Utils/Custom_Hooks/useOnlineStates";
 import SearchLocationes from "./SearchLocationes";
-import { addLoginMode } from "../Utils/Redux/userSlice";
+import { addLoginMode, addUserData } from "../Utils/Redux/userSlice";
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation } from "../Utils/Redux/locationes";
@@ -240,6 +240,25 @@ export const Header = () => {
                 )}
               </li>
             </ul>
+          </div>
+          <div>
+            {isUserLoginData !== null ? (
+              <>
+                <img
+                  className="w-[300px] h-[70px] cursor-pointer "
+                  src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+                ></img>
+                <div>
+                  <button
+                    onClick={() =>
+                      dispatch(addUserData(null), dispatch(addLoginMode()))
+                    }
+                  >
+                    LogOut
+                  </button>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       </div>

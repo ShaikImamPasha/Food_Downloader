@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { addResturentData } from "../../Redux/cardSlice";
-import { addWhatOnYourMind, TopOfferesForYou } from "../../Redux/locationes";
+import {
+  addWhatOnYourMind,
+  TopOfferesForYou,
+  addOffersOn,
+} from "../../Redux/locationes";
 import { useDispatch, useSelector } from "react-redux";
 const useHomeApiCalles = () => {
   const dispatch = useDispatch();

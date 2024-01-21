@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentModel } from "../../Utils/Redux/userSlice";
 import { CommentApp } from "../commentesCMP/CommentApp";
-
+import LineaarShimmer from "../Shimmers/LinearShimmer";
 const Restaurent = () => {
   const dispatch = useDispatch();
   const { resid } = useParams();
@@ -43,7 +43,9 @@ const Restaurent = () => {
   }
 
   return resInfo === null ? (
-    <Shimmer />
+    <div className="flex items-center justify-center">
+      <LineaarShimmer />
+    </div>
   ) : (
     <>
       <div className="">
