@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import dotenv from "dotenv";
+dotenv.config();
 const useFeatchMapApis = async () => {
   const lat = useSelector((state) => state.loc.lat);
   const lng = useSelector((state) => state.loc.lng);
@@ -9,7 +11,8 @@ const useFeatchMapApis = async () => {
   }, [lat, lng]);
   async function featch() {
     var json_data = await fetch(
-      `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
+      process.env.CORSSDAPI +
+        `api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
     );
     json_data = await json_data.json();
     json_data =
@@ -20,7 +23,8 @@ const useFeatchMapApis = async () => {
 
     const allplacesurls = json_data?.map((data) => {
       return fetch(
-        `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/misc/place-autocomplete?input=${data.info.areaName}`
+        process.env.CORSSDAPI +
+          `api/proxy/swiggy/dapi/misc/place-autocomplete?input=${data.info.areaName}`
       );
     });
 
@@ -33,7 +37,8 @@ const useFeatchMapApis = async () => {
         // console.log(dataArray)
         const allplacePlaceIdsurls = dataArray?.map((data) => {
           return fetch(
-            `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${data.data[0].place_id}`
+            process.env.CORSSDAPI +
+              `api/proxy/swiggy/dapi/misc/address-recommend?place_id=${data.data[0].place_id}`
           );
         });
 

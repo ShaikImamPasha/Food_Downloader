@@ -6,6 +6,8 @@ import {
   addOffersOn,
 } from "../../Redux/locationes";
 import { useDispatch, useSelector } from "react-redux";
+import dotenv from "dotenv";
+dotenv.config();
 const useHomeApiCalles = () => {
   const dispatch = useDispatch();
   const lat = useSelector((states) => states.loc.lat);
@@ -15,12 +17,14 @@ const useHomeApiCalles = () => {
   }, [lat, lng]);
   const fetchdata = async () => {
     var data1 = await fetch(
-      `https://rich-neckerchief-jay.cyclic.app/api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`
+      process.env.CORSSMAPI +
+        `api/proxy/swiggy/mapi/homepage/getCards?lat=${lat}&lng=${lng}`
     );
 
     if (data1.ok === false && data1.status === 404) {
       data1 = await fetch(
-        `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
+        process.env.CORSSDAPI +
+          `api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}`
       );
 
       var json_data = await data1.json();

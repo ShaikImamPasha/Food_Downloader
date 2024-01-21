@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { Shimmer } from "./index";
 import Card from "./Card";
 import data from "../Utils/mockData";
+import dotenv from "dotenv";
+dotenv.config();
 import { useSelector } from "react-redux";
 
 const Bestoffers = () => {
@@ -16,7 +18,8 @@ const Bestoffers = () => {
   }, []);
   const fetchdata = async () => {
     var fetcbestoffersdata = await fetch(
-      `https://busy-plum-bull-veil.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`
+      process.env.CORSSDAPI +
+        `api/proxy/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_ux4%2CDISCOUNTING_COUPON_DEAL60&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1`
     );
     var data = await fetcbestoffersdata.json();
     setBestOfferData(data);
