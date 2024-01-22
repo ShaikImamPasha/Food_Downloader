@@ -37,6 +37,7 @@ const MiniCmpt = ({ data, indexKey, replay, replayAva, resid }) => {
   }, []);
 
   function fun() {
+    console.log(isUserLoginData.name);
     if (isUserLoginData === null) {
       dispatch(addLoginMode());
     } else if (rePlaySearch !== " ") {
@@ -44,7 +45,7 @@ const MiniCmpt = ({ data, indexKey, replay, replayAva, resid }) => {
         restaurantId: resid,
         commentIndex: replayAva === true ? replay : indexKey,
         newReply: {
-          name: "pasha",
+          name: isUserLoginData.name,
           message: `@${data.name}` + " " + rePlaySearch,
         },
       });
