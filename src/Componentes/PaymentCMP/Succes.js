@@ -87,4 +87,4 @@ const Succes = () => {
   );
 };
 
-export { Succes };
+export default Succes;

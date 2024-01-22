@@ -8,7 +8,6 @@ export default function useSetLat_Lng() {
   const [placeSearch, setData] = useState(" ");
   useEffect(() => {
     fun();
-    console.log("plas", placeSearch);
   }, [placeSearch]);
   async function fun() {
     var count = 0;
@@ -26,8 +25,7 @@ export default function useSetLat_Lng() {
       if (placeSearch !== " ") {
         const url = `https://stormy-hem-mite.cyclic.app/api/proxy/swiggy/dapi/misc/address-recommend?place_id=${placeSearch}`;
         var data1 = await fetch(url);
-        console.log("data", data1);
-        console.log("pls", placeSearch);
+
         data1 = await data1.json();
         var teampLRU = JSON.parse(localStorage.getItem("lruCatch"));
         if (teampLRU === null) {
@@ -43,7 +41,7 @@ export default function useSetLat_Lng() {
             );
           }
         }
-        console.log("setLat", data1?.data[0]?.geometry?.location?.lat);
+
         // localStorage.setItem("lruCatch", JSON.stringify(teamp.push(data1)));
         dispatch(addLat(data1?.data[0]?.geometry?.location?.lat));
         dispatch(addLng(data1?.data[0]?.geometry?.location?.lng));

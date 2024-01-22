@@ -17,7 +17,6 @@ const CommentApp = ({ resid }) => {
     socket.emit("requestInitialData", { restaurantId: resid });
 
     socket.on("initialData", (initialData) => {
-      console.log("ini", initialData);
       setCommentsData(initialData);
     });
 

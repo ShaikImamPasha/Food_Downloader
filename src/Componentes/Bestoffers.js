@@ -23,8 +23,6 @@ const Bestoffers = () => {
     );
     var data = await fetcbestoffersdata.json();
     setBestOfferData(data);
-
-    console.log(data);
   };
   return bestofferdata.length === 0 ? (
     <>
